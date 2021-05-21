@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { REGISTER } from '../graphql/auth';
 
 const Register = () => {
+  const history = useHistory();
+
   const initCredentials = {
     email: '',
     password: '',
@@ -16,9 +19,7 @@ const Register = () => {
     ...initCredentials
   });
 
-  const [errors, setErrors] = useState({
-
-  });
+  const [errors, setErrors] = useState({});
 
   const [register, { data }] = useMutation(REGISTER);
 
@@ -33,11 +34,12 @@ const Register = () => {
 
     register({ variables: credentials })
       .then(res => {
-        console.log(res, 'register res')
+        localStorage.setItem('token', res.data.register.token);
+        history.push('/');
       })
       .catch(errors => {
         setErrors({
-          ...errors.graphQLErrors[0].extensions.exception.validatedInput
+          ...errors.graphQLErrors[0].extensions.errors
         })
       })
   };
