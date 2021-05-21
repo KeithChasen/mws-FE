@@ -10,8 +10,14 @@ const Register = () => {
     confirmPassword: ''
   };
 
+  const errorStyle = { border: '1px solid red'};
+
   const [credentials, setCredentials] = useState({
     ...initCredentials
+  });
+
+  const [errors, setErrors] = useState({
+
   });
 
   const [register, { data }] = useMutation(REGISTER);
@@ -28,7 +34,12 @@ const Register = () => {
     register({ variables: credentials })
       .then(res => {
         console.log(res, 'register res')
-      });
+      })
+      .catch(errors => {
+        setErrors({
+          ...errors.graphQLErrors[0].extensions.exception.validatedInput
+        })
+      })
   };
 
   return (
@@ -37,9 +48,12 @@ const Register = () => {
         Register
       </h1>
       <form onSubmit={submitForm}>
-        <input type="email" name='email' onChange={onChange}/>
-        <input type="password" name='password' onChange={onChange}/>
-        <input type="password" name='confirmPassword' onChange={onChange}/>
+        <input type="email" name='email' style={errors.email ? errorStyle : null} onChange={onChange}/>
+        <p style={{ color: 'red' }}>{errors.email}</p>
+        <input type="password" name='password' style={errors.password ? errorStyle : null} onChange={onChange}/>
+        <p style={{ color: 'red' }}>{errors.password}</p>
+        <input type="password" name='confirmPassword' style={errors.confirmPassword ? errorStyle : null} onChange={onChange}/>
+        <p style={{ color: 'red' }}>{errors.confirmPassword}</p>
         <button>Register</button>
       </form>
     </div>
