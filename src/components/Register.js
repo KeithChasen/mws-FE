@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { useMutation } from "@apollo/client";
+
+import { REGISTER } from '../graphql/auth';
 
 const Register = () => {
-  const [credentials, setCredentials] = useState({
+  const initCredentials = {
     email: '',
     password: '',
     confirmPassword: ''
+  };
+
+  const [credentials, setCredentials] = useState({
+    ...initCredentials
   });
+
+  const [register, { data }] = useMutation(REGISTER);
 
   const onChange = e =>
     setCredentials({
@@ -16,7 +25,10 @@ const Register = () => {
   const submitForm = e => {
     e.preventDefault();
 
-    console.log(credentials, 'credentials')
+    register({ variables: credentials })
+      .then(res => {
+        console.log(res, 'register res')
+      });
   };
 
   return (
