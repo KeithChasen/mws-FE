@@ -29,6 +29,7 @@ const AuthProvider = props => {
   });
 
   const login = userData => {
+    localStorage.setItem('token', userData.token);
     dispatch({
       type: 'LOGIN',
       payload: userData
@@ -36,10 +37,11 @@ const AuthProvider = props => {
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     dispatch({
       type: 'LOGOUT'
     });
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ user: state.user, login, logout}} {...props} />

@@ -36,7 +36,6 @@ const Register = () => {
 
     register({ variables: credentials })
       .then(res => {
-        localStorage.setItem('token', res.data.register.token);
         authContext.login(res.data.register);
         history.push('/');
       })

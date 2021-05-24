@@ -32,7 +32,6 @@ const Login = () => {
     login({ variables: credentials })
       .then(res => {
         if (res.data.login.token) {
-          localStorage.setItem('token', res.data.login.token);
           context.login(res.data.login);
           history.push('/');
         } else {
