@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { LOGIN } from '../graphql/auth';
+import { AuthContext } from "../context/auth";
 
 const Login = () => {
+  const context = useContext(AuthContext);
   const history = useHistory();
 
   const [credentials, setCredentials] = useState({
@@ -31,6 +33,7 @@ const Login = () => {
       .then(res => {
         if (res.data.login.token) {
           localStorage.setItem('token', res.data.login.token);
+          context.login(res.data.login);
           history.push('/');
         } else {
           setErrors({
