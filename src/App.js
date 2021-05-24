@@ -7,14 +7,18 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Menu from "./components/Menu";
 
+import { AuthProvider } from "./context/auth";
+
 function App() {
   return (
-    <BrowserRouter>
-      <Menu />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Menu />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
