@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { REGISTER } from '../graphql/auth';
+import { AuthContext } from "../context/auth";
 
 const Register = () => {
+  const authContext = useContext(AuthContext);
   const history = useHistory();
 
   const initCredentials = {
@@ -35,6 +37,7 @@ const Register = () => {
     register({ variables: credentials })
       .then(res => {
         localStorage.setItem('token', res.data.register.token);
+        authContext.login(res.data.register);
         history.push('/');
       })
       .catch(errors => {
