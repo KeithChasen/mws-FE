@@ -8,6 +8,7 @@ import Register from "./components/Register";
 import Menu from "./components/Menu";
 
 import { AuthProvider } from "./context/auth";
+import { AuthRoute } from "./utils/AuthRoute";
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
       <BrowserRouter>
         <Menu />
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
+        <AuthRoute exact path="/login" component={Login} />
+        <AuthRoute exact path="/register" component={Register} />
       </BrowserRouter>
     </AuthProvider>
   );
