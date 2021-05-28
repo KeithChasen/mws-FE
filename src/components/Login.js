@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { LOGIN } from '../graphql/auth';
@@ -60,6 +60,9 @@ const Login = () => {
         <p style={{color: 'red'}}>{errors.password}</p>
         <button>Login</button>
         <p style={{color: 'red'}}>{errors.common}</p>
+        <div>
+          <NavLink to='/forgot'>Forgot Password?</NavLink>
+        </div>
       </form>
     </div>
   );

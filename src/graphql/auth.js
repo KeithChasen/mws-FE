@@ -37,6 +37,21 @@ const LOGIN = gql`
   }
 `;
 
+const FORGOT = gql`
+  mutation forgot(
+      $email: String!
+  ) {
+      forgot(
+          forgotInput: {
+              email: $email
+          }
+      ) {
+          status
+          message
+      }
+  }
+`;
+
 export {
-  REGISTER, LOGIN
+  REGISTER, LOGIN, FORGOT
 };
