@@ -52,6 +52,25 @@ const FORGOT = gql`
   }
 `;
 
+const RESTORE = gql`
+    mutation restore(
+        $password: String!
+        $confirmPassword: String!
+        $hash: String!
+    ) {
+        restore(
+            restoreInput: {
+                password: $password
+                confirmPassword: $confirmPassword
+                hash: $hash
+            }
+        ) {
+            status
+            message
+        }
+    }
+`;
+
 export {
-  REGISTER, LOGIN, FORGOT
+  REGISTER, LOGIN, FORGOT, RESTORE
 };
