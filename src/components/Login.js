@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { LOGIN } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
+
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+import StyledLink from "../elements/StyledLink";
 
 const Login = () => {
   const context = useContext(AuthContext);
@@ -15,8 +18,6 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({});
-
-  const errorStyle = { border: '1px solid red'};
 
   const [login, { data }] = useMutation(LOGIN);
 
@@ -49,23 +50,23 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>
-        Login
-      </h1>
-      <form onSubmit={submitForm}>
-        <input type="email" name='email' style={errors.email ? errorStyle : null} onChange={onChange}/>
-        <p style={{color: 'red'}}>{errors.email}</p>
-        <input type="password" name='password' style={errors.password ? errorStyle : null} onChange={onChange}/>
-        <p style={{color: 'red'}}>{errors.password}</p>
-        <button>Login</button>
-        <p style={{color: 'red'}}>{errors.common}</p>
+    <StyledFormWrapper>
+      <StyledForm onSubmit={submitForm}>
+        <h1>Login</h1>
+        <label htmlFor="email">Email</label>
+        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+        <StyledError>{errors.email}</StyledError>
+        <label htmlFor="password">Password</label>
+        <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
+        <StyledError>{errors.password}</StyledError>
+        <StyledButton>Login</StyledButton>
+        <StyledError>{errors.common}</StyledError>
         <div>
-          <NavLink to='/forgot'>Forgot Password?</NavLink>
+          <StyledLink to='/forgot'>Forgot Password?</StyledLink>
         </div>
-      </form>
-    </div>
+      </StyledForm>
+    </StyledFormWrapper>
   );
-}
+};
 
 export default Login;
