@@ -1,28 +1,31 @@
 import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+
 import { AuthContext } from "../context/auth";
+import StyledLink from '../elements/StyledLink';
+import Header from '../elements/Header';
 
 const Menu = () => {
   const { user, logout } = useContext(AuthContext);
-  const activeStyle = { background: 'grey', color: 'black' };
-  const styles = { margin: '10px' };
+  const activeStyle = { color: 'grey' };
 
   const authLinks = user ? (
-    <Link activeStyle={activeStyle} style={styles} onClick={logout}>Logout</Link>
+    <StyledLink to="/" onClick={logout}>Logout</StyledLink>
     ) : (
       <>
-        <NavLink to="/login" activeStyle={activeStyle} style={styles}>Login</NavLink>
-        <NavLink to="/register" activeStyle={activeStyle} style={styles}>Register</NavLink>
+        <StyledLink to="/login" activeStyle={activeStyle}>Login</StyledLink>
+        <StyledLink to="/register" activeStyle={activeStyle}>Register</StyledLink>
       </>
   );
 
   return (
-    <nav>
-      <ul>
-        <NavLink exact to="/" activeStyle={activeStyle} style={styles}>Home</NavLink>
-        { authLinks }
-      </ul>
-    </nav>
+    <Header>
+      <nav>
+        <ul>
+          <StyledLink exact to="/" activeStyle={activeStyle}>Home</StyledLink>
+          { authLinks }
+        </ul>
+      </nav>
+    </Header>
   )
 };
 
