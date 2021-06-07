@@ -9,11 +9,11 @@ const Menu = () => {
   const activeStyle = { color: 'grey' };
 
   const authLinks = user ? (
-    <StyledLink to="/" onClick={logout}>Logout</StyledLink>
+    <StyledLink nav={+true} to="/" onClick={logout}>Logout</StyledLink>
     ) : (
       <>
-        <StyledLink to="/login" activeStyle={activeStyle}>Login</StyledLink>
-        <StyledLink to="/register" activeStyle={activeStyle}>Register</StyledLink>
+        <StyledLink nav={+true} to="/login" activeStyle={activeStyle}>Login</StyledLink>
+        <StyledLink nav={+true} to="/register" activeStyle={activeStyle}>Register</StyledLink>
       </>
   );
 
@@ -21,7 +21,7 @@ const Menu = () => {
     <Header>
       <nav>
         <ul>
-          <StyledLink exact to="/" activeStyle={activeStyle}>Home</StyledLink>
+          <StyledLink nav={+true} exact to="/" activeStyle={activeStyle}>Home</StyledLink>
           { authLinks }
         </ul>
       </nav>
