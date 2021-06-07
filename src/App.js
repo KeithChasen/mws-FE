@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+
+import { ThemeProvider } from 'styled-components';
 
 import './App.css';
 
@@ -15,8 +17,17 @@ import { AuthProvider } from "./context/auth";
 import { AuthRoute } from "./utils/AuthRoute";
 import { UnAuthRoute } from "./utils/UnAuthRoute";
 
+const theme = {
+  red: '#de354c',
+  brown: '#932432',
+  blue: '#3c1874',
+  black: '#283747',
+  white: '#f3f3f3',
+};
+
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <AuthProvider>
       <BrowserRouter>
         <Menu />
@@ -27,6 +38,7 @@ function App() {
         <AuthRoute exact path="/restore/:hash" component={Restore} />
       </BrowserRouter>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 
