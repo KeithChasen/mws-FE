@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 
 import { FORGOT } from '../graphql/auth';
 
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+
 const Forgot = () => {
   const history = useHistory();
 
@@ -29,14 +31,15 @@ const Forgot = () => {
   };
 
   return (
-    <>
-      <h1>Forgot password</h1>
-      <form onSubmit={submitForm}>
-        <input type="email" name='email' onChange={onChange}/>
-        <p style={{color: 'red'}}>{errors.email}</p>
-        <button>Reset</button>
-      </form>
-    </>
+    <StyledFormWrapper>
+      <StyledForm onSubmit={submitForm}>
+        <h1>Forgot password</h1>
+        <label htmlFor="email">Email</label>
+        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+        <StyledError>{errors.email}</StyledError>
+        <StyledButton>Reset</StyledButton>
+      </StyledForm>
+    </StyledFormWrapper>
   );
 };
 
