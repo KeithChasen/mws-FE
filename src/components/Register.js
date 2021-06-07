@@ -5,6 +5,8 @@ import { useMutation } from "@apollo/client";
 import { REGISTER } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+
 const Register = () => {
   const authContext = useContext(AuthContext);
   const history = useHistory();
@@ -14,8 +16,6 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   };
-
-  const errorStyle = { border: '1px solid red'};
 
   const [credentials, setCredentials] = useState({
     ...initCredentials
@@ -47,20 +47,21 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>
-        Register
-      </h1>
-      <form onSubmit={submitForm}>
-        <input type="email" name='email' style={errors.email ? errorStyle : null} onChange={onChange}/>
-        <p style={{ color: 'red' }}>{errors.email}</p>
-        <input type="password" name='password' style={errors.password ? errorStyle : null} onChange={onChange}/>
-        <p style={{ color: 'red' }}>{errors.password}</p>
-        <input type="password" name='confirmPassword' style={errors.confirmPassword ? errorStyle : null} onChange={onChange}/>
-        <p style={{ color: 'red' }}>{errors.confirmPassword}</p>
-        <button>Register</button>
-      </form>
-    </div>
+    <StyledFormWrapper>
+      <StyledForm onSubmit={submitForm}>
+        <h1>Register</h1>
+        <label htmlFor="email">Email</label>
+        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+        <StyledError>{errors.email}</StyledError>
+        <label htmlFor="password">Password</label>
+        <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
+        <StyledError>{errors.password}</StyledError>
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <StyledInput type="password" name='confirmPassword' error={errors.confirmPassword} onChange={onChange}/>
+        <StyledError>{errors.confirmPassword}</StyledError>
+        <StyledButton>Register</StyledButton>
+      </StyledForm>
+    </StyledFormWrapper>
   );
 };
 
