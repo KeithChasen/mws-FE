@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { REGISTER } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
-import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+import {StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage} from "../elements/Form";
 
-const Register = () => {
+const Register = props => {
   const authContext = useContext(AuthContext);
   const history = useHistory();
 
@@ -22,14 +22,25 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
-
+  const [message, setMessage] = useState('');
   const [register, { data }] = useMutation(REGISTER);
 
-  const onChange = e =>
+  useEffect(() => {
+    if (props.location.error) {
+      setErrors({ common: props.location.error });
+    } else if (props.location.message) {
+      setMessage(props.location.message);
+    }
+  }, [props.location.error, props.location.message]);
+
+  const onChange = e => {
+    setErrors({});
+    setMessage('');
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
     });
+  };
 
   const submitForm = e => {
     e.preventDefault();
@@ -60,6 +71,8 @@ const Register = () => {
         <StyledInput type="password" name='confirmPassword' error={errors.confirmPassword} onChange={onChange}/>
         <StyledError>{errors.confirmPassword}</StyledError>
         <StyledButton>Register</StyledButton>
+        <StyledMessage>{message}</StyledMessage>
+        <StyledError>{errors.common}</StyledError>
       </StyledForm>
     </StyledFormWrapper>
   );
