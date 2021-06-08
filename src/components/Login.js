@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from "@apollo/client";
 
 import { LOGIN } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
-import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/Form";
 import StyledLink from "../elements/StyledLink";
 
-const Login = () => {
+const Login = props => {
   const context = useContext(AuthContext);
   const history = useHistory();
 
@@ -18,10 +18,21 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState('');
 
   const [login, { data }] = useMutation(LOGIN);
 
+  useEffect(() => {
+    if (props.location.error) {
+      setErrors({ common: props.location.error });
+    } else if (props.location.message) {
+      setMessage(props.location.message);
+    }
+  }, [props.location.error, props.location.message]);
+
   const onChange = e => {
+    setMessage('');
+    setErrors({});
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
@@ -60,10 +71,9 @@ const Login = () => {
         <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
         <StyledError>{errors.password}</StyledError>
         <StyledButton>Login</StyledButton>
+        <StyledMessage>{message}</StyledMessage>
         <StyledError>{errors.common}</StyledError>
-        <div>
-          <StyledLink to='/forgot'>Forgot Password?</StyledLink>
-        </div>
+        <StyledLink to='/forgot'>Forgot Password?</StyledLink>
       </StyledForm>
     </StyledFormWrapper>
   );
