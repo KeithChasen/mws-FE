@@ -52,6 +52,16 @@ const StyledButton = styled.button`
 const StyledError = styled.div`
   color: ${(props) => props.theme.red};
   height: 20px;
+  font-style: italic;
+  font-weight: bold;
 `;
 
-export { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError };
+const StyledMessage = styled.div`
+  margin-top: 5px;
+  color: ${(props) => props.theme.green};
+  font-style: italic;
+  font-weight: bold;
+  height: 20px;
+`;
+
+export { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage };
