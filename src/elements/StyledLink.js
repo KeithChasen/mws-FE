@@ -2,9 +2,8 @@ import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const StyledLink = styled(NavLink)`
-  margin: 10px;
   color: ${props => props.theme.black};
-  ${({ nav }) => nav && css`color: ${props => props.theme.white}`};
+  ${({ nav }) => nav && css`color: ${props => props.theme.white}; margin: 10px;`};
   text-decoration: none;
   
   &:hover {
