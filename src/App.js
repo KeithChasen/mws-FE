@@ -23,7 +23,8 @@ const theme = {
   blue: '#3c1874',
   black: '#283747',
   white: '#f3f3f3',
-  grey: '#dce1e3'
+  grey: '#dce1e3',
+  green: '#164a41'
 };
 
 function App() {
