@@ -20,13 +20,18 @@ const Forgot = () => {
     e.preventDefault();
     forgot({ variables: { email } })
       .then(res => {
-        //todo: push message to login page
-        history.push('/login');
+        if (res.data.forgot.status) {
+          return history.push({ pathname: '/login', message: res.data.forgot.message });
+        }
+
+        return history.push({ pathname: '/login', error: 'Something went wrong...' });
       })
       .catch(err => {
         setErrors(err.graphQLErrors[0].extensions.errors);
-        // todo: push error through to the login or register component
-        history.push('/login');
+
+        if (err.graphQLErrors[0].extensions.errors.register && err.graphQLErrors[0].extensions.errors.email) {
+          return history.push({ pathname: '/register', message: err.graphQLErrors[0].extensions.errors.email });
+        }
       });
   };
 
