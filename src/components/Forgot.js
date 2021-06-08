@@ -12,7 +12,7 @@ const Forgot = () => {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
 
-  const [forgot, { data }] = useMutation(FORGOT);
+  const [forgot] = useMutation(FORGOT);
 
   const onChange = e => setEmail(e.target.value);
 

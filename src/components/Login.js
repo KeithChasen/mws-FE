@@ -20,7 +20,7 @@ const Login = props => {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
 
-  const [login, { data }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
 
   useEffect(() => {
     if (props.location.error) {

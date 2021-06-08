@@ -23,7 +23,7 @@ const Register = props => {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
-  const [register, { data }] = useMutation(REGISTER);
+  const [register] = useMutation(REGISTER);
 
   useEffect(() => {
     if (props.location.error) {

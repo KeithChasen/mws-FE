@@ -19,7 +19,7 @@ const Restore = () => {
 
   const [errors, setErrors] = useState({});
 
-  const [restore, { data }] = useMutation(RESTORE);
+  const [restore] = useMutation(RESTORE);
 
   const onChange = e => {
     setCredentials({
