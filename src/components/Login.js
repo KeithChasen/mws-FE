@@ -45,7 +45,7 @@ const Login = props => {
       .then(res => {
         if (res.data.login.token) {
           context.login(res.data.login);
-          history.push('/');
+          history.push('/account');
         } else {
           setErrors({
             ...errors,

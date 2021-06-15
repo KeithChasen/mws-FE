@@ -48,7 +48,7 @@ const Register = props => {
     register({ variables: credentials })
       .then(res => {
         authContext.login(res.data.register);
-        history.push('/');
+        history.push('/account');
       })
       .catch(errors => {
         setErrors({

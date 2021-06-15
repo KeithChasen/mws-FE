@@ -10,12 +10,14 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Forgot from "./components/Forgot";
 import Restore from "./components/Restore";
+import Account from "./components/Account";
 
 import Menu from "./components/Menu";
 
 import { AuthProvider } from "./context/auth";
 import { AuthRoute } from "./utils/AuthRoute";
 import { UnAuthRoute } from "./utils/UnAuthRoute";
+
 
 const theme = {
   red: '#de354c',
@@ -34,6 +36,7 @@ function App() {
       <BrowserRouter>
         <Menu />
         <UnAuthRoute exact path="/" component={Home} />
+        <UnAuthRoute exact path="/account" component={Account} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
         <AuthRoute exact path="/forgot" component={Forgot} />
