@@ -20,7 +20,7 @@ const Login = props => {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
 
-  const [login] = useMutation(LOGIN);
+  const [login, { loading }] = useMutation(LOGIN);
 
   useEffect(() => {
     if (props.location.error) {
@@ -60,21 +60,25 @@ const Login = props => {
       })
   };
 
+  const content = loading ? (<div>Loading...</div>) : (
+    <StyledForm onSubmit={submitForm}>
+      <h1>Login</h1>
+      <label htmlFor="email">Email</label>
+      <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+      <StyledError>{errors.email}</StyledError>
+      <label htmlFor="password">Password</label>
+      <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
+      <StyledError>{errors.password}</StyledError>
+      <StyledButton>Login</StyledButton>
+      <StyledMessage>{message}</StyledMessage>
+      <StyledError>{errors.common}</StyledError>
+      <StyledLink to='/forgot'>Forgot Password?</StyledLink>
+    </StyledForm>
+  );
+
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={submitForm}>
-        <h1>Login</h1>
-        <label htmlFor="email">Email</label>
-        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
-        <StyledError>{errors.email}</StyledError>
-        <label htmlFor="password">Password</label>
-        <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
-        <StyledError>{errors.password}</StyledError>
-        <StyledButton>Login</StyledButton>
-        <StyledMessage>{message}</StyledMessage>
-        <StyledError>{errors.common}</StyledError>
-        <StyledLink to='/forgot'>Forgot Password?</StyledLink>
-      </StyledForm>
+      { content }
     </StyledFormWrapper>
   );
 };

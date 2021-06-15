@@ -12,7 +12,7 @@ const Forgot = () => {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
 
-  const [forgot] = useMutation(FORGOT);
+  const [forgot, { loading }] = useMutation(FORGOT);
 
   const onChange = e => setEmail(e.target.value);
 
@@ -35,15 +35,19 @@ const Forgot = () => {
       });
   };
 
+  const content = loading ? (<div>Loading...</div>) : (
+    <StyledForm onSubmit={submitForm}>
+      <h1>Forgot password</h1>
+      <label htmlFor="email">Email</label>
+      <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+      <StyledError>{errors.email}</StyledError>
+      <StyledButton>Reset</StyledButton>
+    </StyledForm>
+  );
+
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={submitForm}>
-        <h1>Forgot password</h1>
-        <label htmlFor="email">Email</label>
-        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
-        <StyledError>{errors.email}</StyledError>
-        <StyledButton>Reset</StyledButton>
-      </StyledForm>
+      { content }
     </StyledFormWrapper>
   );
 };

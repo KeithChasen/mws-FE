@@ -23,7 +23,7 @@ const Register = props => {
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
-  const [register] = useMutation(REGISTER);
+  const [register, { loading }] = useMutation(REGISTER);
 
   useEffect(() => {
     if (props.location.error) {
@@ -57,23 +57,27 @@ const Register = props => {
       })
   };
 
+  const content = loading ? (<div>Loading...</div>) : (
+    <StyledForm onSubmit={submitForm}>
+      <h1>Register</h1>
+      <label htmlFor="email">Email</label>
+      <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
+      <StyledError>{errors.email}</StyledError>
+      <label htmlFor="password">Password</label>
+      <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
+      <StyledError>{errors.password}</StyledError>
+      <label htmlFor="confirmPassword">Confirm Password</label>
+      <StyledInput type="password" name='confirmPassword' error={errors.confirmPassword} onChange={onChange}/>
+      <StyledError>{errors.confirmPassword}</StyledError>
+      <StyledButton>Register</StyledButton>
+      <StyledMessage>{message}</StyledMessage>
+      <StyledError>{errors.common}</StyledError>
+    </StyledForm>
+  );
+
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={submitForm}>
-        <h1>Register</h1>
-        <label htmlFor="email">Email</label>
-        <StyledInput type="email" name='email' error={errors.email} onChange={onChange}/>
-        <StyledError>{errors.email}</StyledError>
-        <label htmlFor="password">Password</label>
-        <StyledInput type="password" name='password' error={errors.password} onChange={onChange}/>
-        <StyledError>{errors.password}</StyledError>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <StyledInput type="password" name='confirmPassword' error={errors.confirmPassword} onChange={onChange}/>
-        <StyledError>{errors.confirmPassword}</StyledError>
-        <StyledButton>Register</StyledButton>
-        <StyledMessage>{message}</StyledMessage>
-        <StyledError>{errors.common}</StyledError>
-      </StyledForm>
+      { content }
     </StyledFormWrapper>
   );
 };

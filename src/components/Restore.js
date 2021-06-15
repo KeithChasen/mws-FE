@@ -19,7 +19,7 @@ const Restore = () => {
 
   const [errors, setErrors] = useState({});
 
-  const [restore] = useMutation(RESTORE);
+  const [restore, { loading }] = useMutation(RESTORE);
 
   const onChange = e => {
     setCredentials({
@@ -45,18 +45,22 @@ const Restore = () => {
       })
   };
 
+  const content = loading ? (<div>Loading...</div>) : (
+    <StyledForm onSubmit={submitForm}>
+      <h1>Restore your password</h1>
+      <label htmlFor="password">Password</label>
+      <StyledInput type="password" name='password' onChange={onChange}/>
+      <StyledError>{errors.password}</StyledError>
+      <label htmlFor="confirmPassword">Confirm Password</label>
+      <StyledInput type="password" name='confirmPassword' onChange={onChange}/>
+      <StyledError>{errors.confirmPassword}</StyledError>
+      <StyledButton>Restore</StyledButton>
+    </StyledForm>
+  );
+
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={submitForm}>
-        <h1>Restore your password</h1>
-        <label htmlFor="password">Password</label>
-        <StyledInput type="password" name='password' onChange={onChange}/>
-        <StyledError>{errors.password}</StyledError>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <StyledInput type="password" name='confirmPassword' onChange={onChange}/>
-        <StyledError>{errors.confirmPassword}</StyledError>
-        <StyledButton>Restore</StyledButton>
-      </StyledForm>
+      { content }
     </StyledFormWrapper>
   );
 
