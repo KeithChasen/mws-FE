@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { FORGOT } from '../graphql/auth';
 
-import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/auth/Form";
 
 const Forgot = () => {
   const history = useHistory();

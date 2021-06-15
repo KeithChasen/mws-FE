@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
-import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/Form";
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/auth/Form";
 import StyledLink from "../elements/StyledLink";
 
 const Login = props => {
