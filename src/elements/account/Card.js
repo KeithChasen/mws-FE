@@ -45,29 +45,36 @@ const CardItem = styled.div`
   color: ${props => props.theme.black};
   font-weight: bold;
   
-  p {
+  span {
     font-weight: normal;
+    border-bottom: 1px solid ${props => props.theme.black};
+    border-right: 1px solid ${props => props.theme.black};
+    border-top: 1px solid ${props => props.theme.grey};
+    border-left: 1px solid ${props => props.theme.grey};
+    border-radius: 5px;
+    width: 25%;
+    padding: 0.3rem;
+    box-shadow: 2px 2px 2px 2px ${props => props.theme.grey};
   }
 `;
 
-const EditButton = styled.button`
-  width: 2rem;
-  min-height: 2rem;
+const MenuButton = styled.button`
+  width: 100%;
+  min-height: 3rem;
   border: 1px solid ${props => props.theme.white};
   border-radius: 10px;
   text-align: center;
-  display: grid;
   box-shadow: 5px 5px 10px ${props => props.theme.white};
   color: ${props => props.theme.black};
   background: ${props => props.theme.grey};
   font-weight: bold;
-  float: right;
-  margin-right: 0.7rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
   
   svg {
-    margin: auto;
+    float: left;
+    margin-left: 1rem;
   }
 `;
 
-export { StyledProfileWrapper, StyledCardWrapper, StyledPanel, CardItem, EditButton };
+export { StyledProfileWrapper, StyledCardWrapper, StyledPanel, CardItem, MenuButton };
