@@ -10,7 +10,9 @@ const Account = () => {
   const { user } = useContext(AuthContext);
   const [message, setMessage] = useState('');
   const [editing, setEditing] = useState(false);
-  const content = editing ? <AccountEdit user={user} edit={setEditing} setMessage={setMessage}/> : <AccountDetails user={user} edit={setEditing}/>;
+  const content = editing ?
+    <AccountEdit user={user} edit={setEditing} setMessage={setMessage}/> :
+    <AccountDetails user={user} edit={setEditing}/>;
 
   // used to remove popup with message after 2seconds
   useEffect(() => {

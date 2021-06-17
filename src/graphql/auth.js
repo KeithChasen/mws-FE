@@ -33,6 +33,13 @@ const LOGIN = gql`
       ) {
           id
           token
+          email
+          bio
+          age
+          occupation
+          nickname
+          firstname
+          lastname
       }
   }
 `;

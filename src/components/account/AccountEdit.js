@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { StyledButton, StyledError, StyledForm, StyledInput } from "../../elements/Form";
 import { useMutation } from "@apollo/client";
 import { UPDATE_ACCOUNT } from "../../graphql/user";
+import {AuthContext} from "../../context/auth";
 
 
 const AccountEdit = ({ user, edit, setMessage }) => {
+  const { updateAccount } = useContext(AuthContext);
   const initialAccountInfo = {
     bio: user?.bio ? user.bio : '',
     age: user?.age ? user.age : '',
@@ -17,7 +19,7 @@ const AccountEdit = ({ user, edit, setMessage }) => {
   const [accountInfo, setAccountInfo] = useState({
     ...initialAccountInfo
   });
-  const [updateAccount, { loading }] = useMutation(UPDATE_ACCOUNT);
+  const [updateAccountInfo, { loading }] = useMutation(UPDATE_ACCOUNT);
 
   const submitForm = e => {
     e.preventDefault();
@@ -27,10 +29,11 @@ const AccountEdit = ({ user, edit, setMessage }) => {
       return;
     }
 
-    updateAccount({ variables: accountInfo })
+    updateAccountInfo({ variables: accountInfo })
       .then(res => {
         if (res.data.updateUser) {
           setMessage('Account info updated successfully');
+          updateAccount(res.data.updateUser);
           edit(false);
         }
       })

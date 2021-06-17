@@ -15,11 +15,7 @@ if (localStorage.getItem('token')) {
   }
 }
 
-const AuthContext = createContext({
-  user: null,
-  login: userData => {},
-  logout: () => {}
-});
+const AuthContext = createContext({});
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +28,11 @@ const authReducer = (state, action) => {
       return {
         ...state,
         user: null
+      };
+    case 'UPDATE_ACCOUNT':
+      return {
+        ...state,
+        user: action.payload
       };
     default:
       return state;
@@ -56,8 +57,16 @@ const AuthProvider = props => {
     });
   };
 
+  const updateAccount = userData => {
+    localStorage.setItem('token', userData.token);
+    dispatch({
+      type: 'UPDATE_ACCOUNT',
+      payload: userData
+    })
+  };
+
   return (
-    <AuthContext.Provider value={{ user: state.user, login, logout}} {...props} />
+    <AuthContext.Provider value={{ user: state.user, login, logout, updateAccount }} {...props} />
   );
 };
 

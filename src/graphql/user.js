@@ -19,6 +19,13 @@ const UPDATE_ACCOUNT = gql`
             ) {
                 id
                 token
+                email
+                bio
+                age
+                occupation
+                nickname
+                firstname
+                lastname
             }
     }
 `;
