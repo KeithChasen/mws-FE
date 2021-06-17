@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { RESTORE } from '../graphql/auth';
 
-import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/auth/Form";
+import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError } from "../elements/Form";
 
 const Restore = () => {
 

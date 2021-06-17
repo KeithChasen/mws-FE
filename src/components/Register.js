@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { REGISTER } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
-import {StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage} from "../elements/auth/Form";
+import {StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage} from "../elements/Form";
 
 const Register = props => {
   const authContext = useContext(AuthContext);

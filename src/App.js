@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Forgot from "./components/Forgot";
 import Restore from "./components/Restore";
-import Account from "./components/Account";
+import Account from "./components/account/Account";
 
 import Menu from "./components/Menu";
 

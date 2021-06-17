@@ -4,7 +4,7 @@ const sharedStyles = css`
   background: ${(props) => props.theme.grey};
    height: 30px;
    border-radius: 5px;
-   border: 1px solid ${(props) => props.theme.black};
+   border: 1px solid ${(props) => props.theme.grey};
    padding-left: 10px;
 `;
 
@@ -34,12 +34,17 @@ const StyledInput = styled.input`
   width: 100%;
   ${ sharedStyles }
   ${({ error }) => error && css`border: 1px solid red`};
+  
+  &:focus {
+     outline-color: ${(props) => props.theme.black};
+   }
 `;
 
 const StyledButton = styled.button`
-  display: block;
-  background: ${(props) => props.theme.grey};
-  color: ${(props) => props.theme.black};
+  display: inline-block;
+  margin-right: 1rem;
+  background: ${(props) => props.theme[props.bgcolor] || props.theme.grey};
+  color: ${(props) => props.bgcolor ? props.theme.white : props.theme.black};
   font-size: .9rem;
   border: 0;
   border-radius: 5px;
