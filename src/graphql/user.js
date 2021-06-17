@@ -26,6 +26,7 @@ const UPDATE_ACCOUNT = gql`
                 nickname
                 firstname
                 lastname
+                photo
             }
     }
 `;

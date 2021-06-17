@@ -40,6 +40,7 @@ const LOGIN = gql`
           nickname
           firstname
           lastname
+          photo
       }
   }
 `;

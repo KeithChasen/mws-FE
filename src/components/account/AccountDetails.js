@@ -2,6 +2,7 @@ import React from 'react';
 import {CardItem, MenuButton, StyledPanel} from "../../elements/account/Card";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
+import DefaultAvatar from '../../media/avatar-default.png';
 
 const AccountDetails = ({ edit, user }) => {
   return (
@@ -22,8 +23,8 @@ const AccountDetails = ({ edit, user }) => {
       </StyledPanel>
 
       <StyledPanel bgcolor='white' size={70}>
-        <CardItem borderColor="grey">
-          Photo
+        <CardItem borderColor="grey" avatar>
+          {user.photo ? 'Gotta photo' : <img src={DefaultAvatar} alt="default avatar"/>}
         </CardItem>
         <CardItem borderColor="grey">
           <span>Full Name</span>

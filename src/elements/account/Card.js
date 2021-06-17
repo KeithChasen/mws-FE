@@ -28,6 +28,10 @@ const StyledPanel = styled.div`
   padding: 20px;
   margin: 10px;
   border-radius: 50px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CardItem = styled.div`
@@ -45,6 +49,12 @@ const CardItem = styled.div`
   color: ${props => props.theme.black};
   font-weight: bold;
   
+  ${({ avatar }) => avatar && css`
+      background: ${props => props.theme.grey};
+      width: 80%;
+      margin-bottom: 1rem;
+    `};
+  
   span {
     font-weight: normal;
     border-bottom: 1px solid ${props => props.theme.black};
@@ -55,6 +65,16 @@ const CardItem = styled.div`
     width: 25%;
     padding: 0.3rem;
     box-shadow: 2px 2px 2px 2px ${props => props.theme.grey};
+  }
+  
+  img {
+    width: 10rem;
+    height: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 5px solid ${props => props.theme.white};
+    box-shadow: 3px 3px 3px ${props => props.theme.white};
   }
 `;
 
