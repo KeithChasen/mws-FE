@@ -91,6 +91,15 @@ const MenuButton = styled.button`
   font-size: 1rem;
   margin-bottom: 0.5rem;
   
+  ${({ upload }) => upload && css`
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        min-height: 2rem;
+        border-width: 3px;
+    `};
+  
   svg {
     float: left;
     margin-left: 1rem;

@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
 import DefaultAvatar from '../../media/avatar-default.png';
 
-const AccountDetails = ({ edit, user }) => {
+const AccountDetails = ({ edit, user, upload }) => {
   return (
     <>
       <StyledPanel bgcolor='grey' size={30}>
@@ -25,6 +25,10 @@ const AccountDetails = ({ edit, user }) => {
       <StyledPanel bgcolor='white' size={70}>
         <CardItem borderColor="grey" avatar>
           {user.photo ? 'Gotta photo' : <img src={DefaultAvatar} alt="default avatar"/>}
+          <MenuButton onClick={() => upload(true)} upload>
+            <FontAwesomeIcon icon={faEdit}/>
+            Change avatar
+          </MenuButton>
         </CardItem>
         <CardItem borderColor="grey">
           <span>Full Name</span>
