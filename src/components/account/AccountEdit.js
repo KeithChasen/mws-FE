@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyledButton, StyledError, StyledForm, StyledInput, StyledMessage } from "../../elements/Form";
+import { StyledButton, StyledError, StyledForm, StyledInput } from "../../elements/Form";
 import { useMutation } from "@apollo/client";
 import { UPDATE_ACCOUNT } from "../../graphql/user";
 
 
-const AccountEdit = ({ user }) => {
+const AccountEdit = ({ user, edit, setMessage }) => {
   const initialAccountInfo = {
     bio: user?.bio ? user.bio : '',
     age: user?.age ? user.age : '',
@@ -14,7 +14,6 @@ const AccountEdit = ({ user }) => {
     lastname: user?.lastname ? user.lastname : '',
   };
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState('');
   const [accountInfo, setAccountInfo] = useState({
     ...initialAccountInfo
   });
@@ -24,16 +23,21 @@ const AccountEdit = ({ user }) => {
     e.preventDefault();
     if (JSON.stringify(initialAccountInfo) === JSON.stringify(accountInfo)) {
       setMessage('Nothing to update...');
+      edit(false);
+      return;
     }
 
-    console.log(accountInfo, 'account info')
-
     updateAccount({ variables: accountInfo })
-      .then(res => console.log(res, 'res'))
+      .then(res => {
+        if (res.data.updateUser) {
+          setMessage('Account info updated successfully');
+          edit(false);
+        }
+      })
       .catch(err => {
-        // console.log(err.graphQLErrors, 'err')
-        console.log(err, 'err')
-        // setErrors();
+        setErrors({
+          ...err.graphQLErrors[0].extensions.errors
+        })
       });
   };
 
@@ -67,7 +71,6 @@ const AccountEdit = ({ user }) => {
       <StyledError>{errors.bio}</StyledError>
       <StyledButton>Update</StyledButton>
       <StyledButton bgcolor='black'>Cancel</StyledButton>
-      <StyledMessage>{message}</StyledMessage>
       <StyledError>{errors.common}</StyledError>
     </StyledForm>
   );

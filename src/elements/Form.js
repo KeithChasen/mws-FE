@@ -69,4 +69,19 @@ const StyledMessage = styled.div`
   height: 20px;
 `;
 
-export { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage };
+const StyledPopUp = styled.div`
+  min-width: 30vw;
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  border: 1px solid ${props => props.theme.white};
+  padding: 1rem;
+  border-radius: 10px;
+  background: ${props => props.theme.green};
+  color: ${props => props.theme.white};
+  z-index: 9;
+  transition: width 2s, height 4s;
+  opacity: .8;
+`;
+
+export { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage, StyledPopUp };
