@@ -11,7 +11,7 @@ if (localStorage.getItem('token')) {
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('token');
   } else {
-    initState.user = decodedToken;
+    initState.user = decodedToken._doc;
   }
 }
 
