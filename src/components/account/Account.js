@@ -6,7 +6,6 @@ import AccountEdit from "./AccountEdit";
 import UploadAvatar from "./UploadAvatar";
 import { StyledPopUp } from "../../elements/Form";
 
-
 const Account = () => {
   const { user } = useContext(AuthContext);
   const [message, setMessage] = useState('');
@@ -15,7 +14,7 @@ const Account = () => {
   const content = editing ?
     <AccountEdit user={user} edit={setEditing} setMessage={setMessage}/> :
     avatarUploading ?
-      <UploadAvatar/> :
+      <UploadAvatar edit={setAvatarUploading} setMessage={setMessage}/> :
     <AccountDetails user={user} edit={setEditing} upload={setAvatarUploading}/>;
 
   // used to remove popup with message after 2seconds

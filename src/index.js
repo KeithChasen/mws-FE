@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { createUploadLink } from "apollo-upload-client/public/index";
 import { ApolloProvider } from '@apollo/client/react';
 import { setContext } from "@apollo/client/link/context";
 
@@ -17,7 +18,7 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-const httpLink = authLink.concat(new HttpLink({
+const httpLink = authLink.concat(createUploadLink({
   uri: process.env.REACT_APP_SERVER
 }));
 

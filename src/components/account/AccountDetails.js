@@ -24,7 +24,7 @@ const AccountDetails = ({ edit, user, upload }) => {
 
       <StyledPanel bgcolor='white' size={70}>
         <CardItem borderColor="grey" avatar>
-          {user.photo ? 'Gotta photo' : <img src={DefaultAvatar} alt="default avatar"/>}
+          {user.photo ? <img src={user.photo} alt="default avatar"/> : <img src={DefaultAvatar} alt="default avatar"/>}
           <MenuButton onClick={() => upload(true)} upload>
             <FontAwesomeIcon icon={faEdit}/>
             Change avatar
