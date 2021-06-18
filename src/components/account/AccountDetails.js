@@ -5,6 +5,11 @@ import {faEdit} from "@fortawesome/free-solid-svg-icons";
 import DefaultAvatar from '../../media/avatar-default.png';
 
 const AccountDetails = ({ edit, user, upload }) => {
+
+  const onImageError = e => {
+    e.target.src = DefaultAvatar;
+  };
+
   return (
     <>
       <StyledPanel bgcolor='grey' size={30}>
@@ -24,7 +29,7 @@ const AccountDetails = ({ edit, user, upload }) => {
 
       <StyledPanel bgcolor='white' size={70}>
         <CardItem borderColor="grey" avatar>
-          {user.photo ? <img src={user.photo} alt="default avatar"/> : <img src={DefaultAvatar} alt="default avatar"/>}
+          <img src={user.photo} onError={onImageError} />
           <MenuButton onClick={() => upload(true)} upload>
             <FontAwesomeIcon icon={faEdit}/>
             Change avatar
