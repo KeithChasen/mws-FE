@@ -17,14 +17,16 @@ const AccountDetails = ({ edit, user, upload }) => {
           <FontAwesomeIcon icon={faEdit}/>
           Edit
         </MenuButton>
-        <MenuButton onClick={() => edit(true)}>
+        <MenuButton onClick={() => console.log()} disabled={true}>
           <FontAwesomeIcon icon={faEdit}/>
-          Change Password
+          Change Password (TBD)
         </MenuButton>
 
-        <MenuButton onClick={() => edit(true)}>
+        <MenuButton onClick={() =>  console.log()} disabled={true}>
           <FontAwesomeIcon icon={faEdit}/>
+          Chat (TBD)
         </MenuButton>
+
       </StyledPanel>
 
       <StyledPanel bgcolor='white' size={70}>
