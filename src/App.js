@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Forgot from "./components/Forgot";
 import Restore from "./components/Restore";
 import Account from "./components/account/Account";
+import UsersList from "./components/users/UsersList";
 
 import Menu from "./components/Menu";
 
@@ -37,6 +38,7 @@ function App() {
         <Menu />
         <UnAuthRoute exact path="/" component={Home} />
         <UnAuthRoute exact path="/account" component={Account} />
+        <UnAuthRoute exact path="/users" component={UsersList} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
         <AuthRoute exact path="/forgot" component={Forgot} />

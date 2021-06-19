@@ -10,6 +10,8 @@ const AccountDetails = ({ edit, user, upload }) => {
     e.target.src = DefaultAvatar;
   };
 
+  const navigateToUsers = () => window.location.href = '/users';
+
   return (
     <>
       <StyledPanel bgcolor='grey' size={30}>
@@ -17,10 +19,18 @@ const AccountDetails = ({ edit, user, upload }) => {
           <FontAwesomeIcon icon={faEdit}/>
           Edit
         </MenuButton>
+
+        <MenuButton onClick={navigateToUsers}>
+          <FontAwesomeIcon icon={faEdit}/>
+          Users
+        </MenuButton>
+
         <MenuButton onClick={() => console.log()} disabled={true}>
           <FontAwesomeIcon icon={faEdit}/>
           Change Password (TBD)
         </MenuButton>
+
+
 
         <MenuButton onClick={() =>  console.log()} disabled={true}>
           <FontAwesomeIcon icon={faEdit}/>
