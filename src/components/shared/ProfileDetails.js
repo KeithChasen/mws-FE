@@ -29,7 +29,7 @@ const ProfileDetails = ({ loadedUser, upload, panelSize, fullSize }) => {
   return (
     <StyledPanel bgcolor='white' size={panelSize} fullSize={fullSize}>
       <CardItem borderColor="grey" avatar>
-        <img src={ loadedUser.photo ?? DefaultAvatar } onError={onImageError} />
+        <img src={ loadedUser.photo ?? DefaultAvatar } onError={onImageError} alt=''/>
         { changePhotoButton }
       </CardItem>
       <CardItem borderColor="grey">

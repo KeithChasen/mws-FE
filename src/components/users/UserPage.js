@@ -10,7 +10,11 @@ const UserPage = () => {
   const { loading, error, data } = useQuery(GET_USER, { variables: { userId }});
 
   return (
-    loading ? <div>Loading</div> : <ProfileDetails loadedUser={ data.getUser } panelSize={90} fullSize={true} />
+    loading ?
+      <div>Loading</div> :
+      error ?
+        <div>Wasn't able to fetch user info</div> :
+        <ProfileDetails loadedUser={ data.getUser } panelSize={90} fullSize={true} />
   );
 };
 
