@@ -26,7 +26,7 @@ const StyledPanel = styled.div`
   width: ${props => props.size || 10}%;
   background: ${props => props.theme[props.bgcolor] || props.theme.white};
   padding: 20px;
-  margin: 10px;
+   ${ ({ fullSize }) => fullSize ? css`margin: auto` : css`margin: 10px` };
   border-radius: 50px;
   overflow: scroll;
   &::-webkit-scrollbar {

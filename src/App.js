@@ -12,9 +12,9 @@ import Forgot from "./components/Forgot";
 import Restore from "./components/Restore";
 import Account from "./components/account/Account";
 import UsersList from "./components/users/UsersList";
+import User from "./components/users/UserPage";
 
 import Menu from "./components/Menu";
-
 import { AuthProvider } from "./context/auth";
 import { AuthRoute } from "./utils/AuthRoute";
 import { UnAuthRoute } from "./utils/UnAuthRoute";
@@ -39,6 +39,7 @@ function App() {
         <UnAuthRoute exact path="/" component={Home} />
         <UnAuthRoute exact path="/account" component={Account} />
         <UnAuthRoute exact path="/users" component={UsersList} />
+        <UnAuthRoute exact path="/user/:id" component={User} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
         <AuthRoute exact path="/forgot" component={Forgot} />

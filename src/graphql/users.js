@@ -15,4 +15,19 @@ const GET_USERS = gql`
   }
 `;
 
-export { GET_USERS };
+const GET_USER = gql`
+    query getUser($userId: ID) {
+        getUser(userId: $userId) {
+            id
+            bio
+            age
+            occupation
+            nickname
+            firstname
+            lastname
+            photo
+        }
+    }
+`;
+
+export { GET_USERS, GET_USER };

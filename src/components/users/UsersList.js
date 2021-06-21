@@ -10,7 +10,7 @@ const UsersList = () => {
   const usersList = data?.getUsers &&
     data.getUsers.map(
       user => (
-        <UserLink key={user.id} to={`/user/${user.id}`}>
+        <UserLink key={user.id} to={ `/user/${user.id}` }>
           { user.nickname ?? user.id  }
         </UserLink>
       )
