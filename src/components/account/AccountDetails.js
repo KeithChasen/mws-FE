@@ -7,6 +7,7 @@ import ProfileDetails from "../shared/ProfileDetails";
 const AccountDetails = ({ edit, user, upload }) => {
 
   const navigateToUsers = () => window.location.href = '/users';
+  const navigateToChat = () => window.location.href = '/chat';
 
   return (
     <>
@@ -23,9 +24,9 @@ const AccountDetails = ({ edit, user, upload }) => {
           <FontAwesomeIcon icon={faEdit}/>
           Change Password (TBD)
         </MenuButton>
-        <MenuButton onClick={() =>  console.log()} disabled={true}>
+        <MenuButton onClick={navigateToChat}>
           <FontAwesomeIcon icon={faEdit}/>
-          Chat (TBD)
+          Chat
         </MenuButton>
       </StyledPanel>
 

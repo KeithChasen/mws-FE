@@ -13,12 +13,12 @@ import Restore from "./components/Restore";
 import Account from "./components/account/Account";
 import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
+import Chat from "./components/chat/Chat";
 
 import Menu from "./components/Menu";
 import { AuthProvider } from "./context/auth";
 import { AuthRoute } from "./utils/AuthRoute";
 import { UnAuthRoute } from "./utils/UnAuthRoute";
-
 
 const theme = {
   red: '#de354c',
@@ -40,6 +40,7 @@ function App() {
         <UnAuthRoute exact path="/account" component={Account} />
         <UnAuthRoute exact path="/users" component={UsersList} />
         <UnAuthRoute exact path="/user/:id" component={User} />
+        <UnAuthRoute exact path="/chat" component={Chat} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Register} />
         <AuthRoute exact path="/forgot" component={Forgot} />
