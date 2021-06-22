@@ -1,20 +1,29 @@
-import React, { useEffect } from 'react';
-import { useLazyQuery } from "@apollo/client";
+import React, { useEffect, useState } from 'react';
+import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { ChatMessagesHolder, ChatMessagesSpace, ChatInput, ChatButton } from "../../elements/chat/wrapper";
-import { GET_MESSAGES } from "../../graphql/chat";
+import { GET_MESSAGES, SEND_MESSAGE } from "../../graphql/chat";
 import { useUserState } from "../../context/user";
 
 const Messages = () => {
   const [getMessages, { loading, data }] = useLazyQuery(GET_MESSAGES);
   const { users, selectedUser } = useUserState();
+  const [content, setContent] = useState('');
+  const [sendMessage] = useMutation(SEND_MESSAGE);
 
   useEffect(() => {
     getMessages({ variables: { from: selectedUser }})
   }, [selectedUser]);
 
-  const sendMessage = e => {
+  const submitForm = e => {
     e.preventDefault();
+    if (content.trim() === '') {
+      return;
+    }
+
+    sendMessage({ variables: { to: selectedUser, content }})
+      .then(res => console.log(res, 'send message res'))
+      .catch(err => console.log(err.graphQLErrors, 'send message error'))
   };
 
   const getChatMarkup = message => (
@@ -22,8 +31,8 @@ const Messages = () => {
       <ChatMessagesSpace>
         { message }
       </ChatMessagesSpace>
-      <form onSubmit={sendMessage}>
-        <ChatInput/>
+      <form onSubmit={submitForm}>
+        <ChatInput onChange={e => setContent(e.target.value)}/>
         <ChatButton>Send</ChatButton>
       </form>
     </>
