@@ -20,11 +20,20 @@ const ChatUserListWrapper = styled.div`
 `;
 
 const ChatUserList = styled.ul`
-
+  margin-top: 1vh;
+  list-style: none;
 `;
 
 const ChatUserListItem = styled.li`
+  border: 2px solid ${props => `${props.selected ? props.theme.white : props.theme.grey}`};
+  border-radius: 2vw;
+  padding: 0.8vw;
+  margin-bottom: 1vh;
+  background: ${props => `${props.selected ? props.theme.grey : props.theme.white}`};
+`;
+
+const ChatMessagesHolder = styled.div`
 
 `;
 
-export { ChatWrapper, ChatItemWrapper, ChatUserListWrapper, ChatUserList, ChatUserListItem };
+export { ChatWrapper, ChatItemWrapper, ChatUserListWrapper, ChatUserList, ChatUserListItem, ChatMessagesHolder };

@@ -7,7 +7,7 @@ import { GET_USERS } from "../../graphql/users";
 
 const ChatUsersList = () => {
   const dispatch = useUserDispatch();
-  const { users } = useUserState();
+  const { users, selectedUser } = useUserState();
   const [error, setError] = useState(null);
 
   const { loading } = useQuery(GET_USERS, {
@@ -30,8 +30,12 @@ const ChatUsersList = () => {
 
     else
       return users.map(user => (
-        <ChatUserListItem key={user.id}>
-          { user.nickname ?? user.id  }
+        <ChatUserListItem
+          selected={selectedUser === user.id}
+          key={user.id}
+          onClick={() => dispatch({ type: 'SET_SELECTED_USER', payload: user.id })}
+        >
+          { user.nickname ?? user.id }
         </ChatUserListItem>
       ));
   };

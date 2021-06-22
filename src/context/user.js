@@ -10,6 +10,11 @@ const userReducer = (state, action) => {
         ...state,
         users: action.payload
       };
+    case 'SET_SELECTED_USER':
+      return {
+        ...state,
+        selectedUser: action.payload
+      };
     default:
       return {
         ...state
