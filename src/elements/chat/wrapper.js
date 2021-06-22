@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const ChatWrapper = styled.div`
     background: linear-gradient(
@@ -30,6 +30,7 @@ const ChatUserListItem = styled.li`
   padding: 0.8vw;
   margin-bottom: 1vh;
   background: ${props => `${props.selected ? props.theme.grey : props.theme.white}`};
+  box-shadow: ${props => props.selected ? `5px 5px 10px ${props.theme.grey}` : 'none'};
 `;
 
 const ChatMessagesHolder = styled.div`
