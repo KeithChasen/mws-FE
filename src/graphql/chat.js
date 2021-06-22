@@ -8,4 +8,12 @@ const GET_MESSAGES = gql`
     }
 `;
 
-export { GET_MESSAGES };
+const SEND_MESSAGE = gql`    
+    mutation sendMessage ($to: ID! $content: String!) {
+        sendMessage(to: $to content: $content) {
+            id to from content createdAt
+        }
+    }
+`;
+
+export { GET_MESSAGES, SEND_MESSAGE };
