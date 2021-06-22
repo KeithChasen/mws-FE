@@ -3,7 +3,15 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider } from 'styled-components';
 
+import { UserProvider } from "./context/user";
+
 import './App.css';
+
+import { AuthProvider } from "./context/auth";
+import { AuthRoute } from "./utils/AuthRoute";
+import { UnAuthRoute } from "./utils/UnAuthRoute";
+
+import Menu from "./components/Menu";
 
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -14,11 +22,6 @@ import Account from "./components/account/Account";
 import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
 import Chat from "./components/chat/Chat";
-
-import Menu from "./components/Menu";
-import { AuthProvider } from "./context/auth";
-import { AuthRoute } from "./utils/AuthRoute";
-import { UnAuthRoute } from "./utils/UnAuthRoute";
 
 const theme = {
   red: '#de354c',
@@ -34,18 +37,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <AuthProvider>
-      <BrowserRouter>
-        <Menu />
-        <UnAuthRoute exact path="/" component={Home} />
-        <UnAuthRoute exact path="/account" component={Account} />
-        <UnAuthRoute exact path="/users" component={UsersList} />
-        <UnAuthRoute exact path="/user/:id" component={User} />
-        <UnAuthRoute exact path="/chat" component={Chat} />
-        <AuthRoute exact path="/login" component={Login} />
-        <AuthRoute exact path="/register" component={Register} />
-        <AuthRoute exact path="/forgot" component={Forgot} />
-        <AuthRoute exact path="/restore/:hash" component={Restore} />
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Menu />
+          <UnAuthRoute exact path="/" component={Home} />
+          <UnAuthRoute exact path="/account" component={Account} />
+          <UnAuthRoute exact path="/users" component={UsersList} />
+          <UnAuthRoute exact path="/user/:id" component={User} />
+          <UnAuthRoute exact path="/chat" component={Chat} />
+          <AuthRoute exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
+          <AuthRoute exact path="/forgot" component={Forgot} />
+          <AuthRoute exact path="/restore/:hash" component={Restore} />
+        </BrowserRouter>
+      </UserProvider>
     </AuthProvider>
     </ThemeProvider>
   );
