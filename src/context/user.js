@@ -23,6 +23,18 @@ const userReducer = (state, action) => {
           [action.payload.userId]: action.payload.messages
         }
       };
+    case 'ADD_MESSAGE':
+      let chatMessages = [...state.messages[action.payload.userId]];
+      chatMessages.unshift(action.payload.message);
+      return {
+        ...state,
+        messages: {
+          ...state.messages,
+          [action.payload.userId]: [
+            ...chatMessages
+          ]
+        }
+      };
     default:
       return {
         ...state

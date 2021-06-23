@@ -31,7 +31,9 @@ const Messages = () => {
     }
 
     sendMessage({ variables: { to: selectedUser, content }})
-      .then(res => console.log(res, 'send message res'))
+      .then(res => {
+        dispatch({ type: 'ADD_MESSAGE', payload: { userId: selectedUser, message: res.data.sendMessage }})
+      })
       .catch(err => console.log(err.graphQLErrors, 'send message error'))
   };
 
