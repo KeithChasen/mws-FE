@@ -3,17 +3,26 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { ChatMessagesHolder, ChatMessagesSpace, ChatInput, ChatButton } from "../../elements/chat/wrapper";
 import { GET_MESSAGES, SEND_MESSAGE } from "../../graphql/chat";
-import { useUserState } from "../../context/user";
+import { useUserDispatch, useUserState } from "../../context/user";
 
 const Messages = () => {
   const [getMessages, { loading, data }] = useLazyQuery(GET_MESSAGES);
-  const { users, selectedUser } = useUserState();
+  const dispatch = useUserDispatch();
+  const { users, selectedUser, messages } = useUserState();
   const [content, setContent] = useState('');
   const [sendMessage] = useMutation(SEND_MESSAGE);
 
   useEffect(() => {
-    getMessages({ variables: { from: selectedUser }})
+    if (!messages || (selectedUser && !messages[selectedUser])) {
+      getMessages({ variables: { from: selectedUser }})
+    }
   }, [selectedUser]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'SET_MESSAGES', payload: { userId: selectedUser, messages: data.getMessages }})
+    }
+  }, [data]);
 
   const submitForm = e => {
     e.preventDefault();
@@ -26,12 +35,26 @@ const Messages = () => {
       .catch(err => console.log(err.graphQLErrors, 'send message error'))
   };
 
-  const getChatMarkup = message => (
+  const messagesContent = selectedUser && messages?.[selectedUser] && (
+    <ul>
+      {
+        messages[selectedUser]
+          .map(message =>
+            <li key={message.id}>
+              {message.content}
+            </li>
+          )
+      }
+    </ul>
+  );
+
+  const getChatMarkup = text => (
     <>
       <ChatMessagesSpace>
-        { message }
+        { text }
       </ChatMessagesSpace>
       <form onSubmit={submitForm}>
+        { messagesContent }
         <ChatInput onChange={e => setContent(e.target.value)}/>
         <ChatButton>Send</ChatButton>
       </form>

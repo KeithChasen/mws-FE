@@ -15,6 +15,14 @@ const userReducer = (state, action) => {
         ...state,
         selectedUser: action.payload
       };
+    case 'SET_MESSAGES':
+      return {
+        ...state,
+        messages: {
+          ...state.messages,
+          [action.payload.userId]: action.payload.messages
+        }
+      };
     default:
       return {
         ...state
@@ -23,7 +31,7 @@ const userReducer = (state, action) => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, { users: null });
+  const [state, dispatch] = useReducer(userReducer, { users: null, messages: null });
 
   return (
     <UserDispatchContext.Provider value={dispatch}>
