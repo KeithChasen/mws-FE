@@ -16,4 +16,12 @@ const SEND_MESSAGE = gql`
     }
 `;
 
-export { GET_MESSAGES, SEND_MESSAGE };
+const NEW_MESSAGE = gql`    
+    subscription newMessage {
+        newMessage {
+            id content from to createdAt
+        }
+    }
+`;
+
+export { GET_MESSAGES, SEND_MESSAGE, NEW_MESSAGE };
