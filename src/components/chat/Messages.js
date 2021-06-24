@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from "@apollo/client";
 
-import { ChatMessagesHolder, ChatMessagesSpace, ChatInput, ChatButton } from "../../elements/chat/wrapper";
+import { ChatMessagesHolder, ChatMessagesSpace, ChatInput, ChatButton, Message } from "../../elements/chat/wrapper";
 import { GET_MESSAGES, SEND_MESSAGE } from "../../graphql/chat";
 import { useUserDispatch, useUserState } from "../../context/user";
 
@@ -40,9 +40,9 @@ const Messages = () => {
       {
         messages[selectedUser]
           .map(message =>
-            <li key={message.id}>
+            <Message key={message.id} received={message.from === selectedUser}>
               {message.content}
-            </li>
+            </Message>
           )
       }
     </ul>
@@ -52,9 +52,9 @@ const Messages = () => {
     <>
       <ChatMessagesSpace>
         { text }
+        { messagesContent }
       </ChatMessagesSpace>
       <form onSubmit={submitForm}>
-        { messagesContent }
         <ChatInput onChange={e => setContent(e.target.value)}/>
         <ChatButton>Send</ChatButton>
       </form>

@@ -57,7 +57,17 @@ const ChatMessagesHolder = styled.div`
 `;
 
 const ChatMessagesSpace = styled.div`
+  position: relative;
   height: 80vh;
+  
+  ul {
+    height: 75vh;
+    overflow-y: scroll;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const inputStyles = css`
@@ -82,6 +92,18 @@ const ChatButton = styled.button`
   ${inputStyles}
 `;
 
+const Message = styled.div`
+  margin: 0.5rem;
+  padding: 1rem;
+  float: ${ props => props.received ? 'left' : 'right' };
+  font-size: 1.5rem;
+  width: 50%;
+  background: ${ props => props.received ? props.theme.blue : props.theme.green };
+  color: ${props => props.theme.grey};
+  border: 0.5rem solid ${props => props.theme.grey};
+  border-radius: 1.7rem;
+`;
+
 export {
       ChatWrapper,
       ChatItemWrapper,
@@ -91,5 +113,6 @@ export {
       ChatMessagesHolder,
       ChatMessagesSpace,
       ChatInput,
-      ChatButton
+      ChatButton,
+      Message
 };
