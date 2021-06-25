@@ -11,7 +11,7 @@ const Menu = () => {
   const authLinks = user ? (
     <>
       <StyledLink nav={+true} to="/account">Account</StyledLink>
-      <StyledLink nav={+true} to="/" onClick={logout}>Logout</StyledLink>
+      <StyledLink nav={+true} to="/account" onClick={logout}>Logout</StyledLink>
     </>
     ) : (
       <>

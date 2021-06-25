@@ -1,17 +1,17 @@
 import styled, { css } from "styled-components";
 
 const sharedStyles = css`
-  background: ${(props) => props.theme.grey};
+   background: var(--app-grey);
    height: 30px;
    border-radius: 5px;
-   border: 1px solid ${(props) => props.theme.grey};
+   border: 1px solid var(--app-grey);
    padding-left: 10px;
 `;
 
 const StyledFormWrapper = styled.div`
   background: linear-gradient(
-      ${(props) => props.theme.white},
-      ${(props) => props.theme.black} 
+      var(--app-white),
+      var(--app-black)
     );
     display: flex;
     justify-content: center;
@@ -23,28 +23,28 @@ const StyledForm = styled.form`
   width: 100%;
   max-width: 500px;
   padding: 40px;
-  background: ${(props) => props.theme.white};
+  background: var(--app-white);
   border-radius: 10px;
   box-sizing: border-box;
-  box-shadow: 0 0 20px 0 ${(props) => props.theme.black};
+  box-shadow: 0 0 20px 0 var(--app-black);
 `;
 
 const StyledInput = styled.input`
   display: block;
   width: 100%;
   ${ sharedStyles }
-  ${({ error }) => error && css`border: 1px solid red`};
+  ${({ error }) => error && css`border: 1px solid var(--app-red)`};
   
   &:focus {
-     outline-color: ${(props) => props.theme.black};
+     outline-color: var(--app-black);
    }
 `;
 
 const StyledButton = styled.button`
   display: inline-block;
   margin-right: 1rem;
-  background: ${(props) => props.theme[props.bgcolor] || props.theme.grey};
-  color: ${(props) => props.bgcolor ? props.theme.white : props.theme.black};
+  background: ${(props) => props.bgcolor ? `var(--app-${props.bgcolor})` : `var(--app-grey)`};
+  color: ${(props) => props.bgcolor ? `var(--app-white)` : `var(--app-black)`};
   font-size: .9rem;
   border: 0;
   border-radius: 5px;
@@ -55,7 +55,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledError = styled.div`
-  color: ${(props) => props.theme.red};
+  color: var(--app-red);
   height: 20px;
   font-style: italic;
   font-weight: bold;
@@ -63,7 +63,7 @@ const StyledError = styled.div`
 
 const StyledMessage = styled.div`
   margin-top: 5px;
-  color: ${(props) => props.theme.green};
+  color: var(--app-green);
   font-style: italic;
   font-weight: bold;
   height: 20px;
@@ -74,11 +74,11 @@ const StyledPopUp = styled.div`
   position: fixed;
   top: 5vh;
   left: 5vw;
-  border: 1px solid ${props => props.theme.white};
+  border: 1px solid var(--app-white);
   padding: 1rem;
   border-radius: 10px;
-  background: ${props => props.theme.green};
-  color: ${props => props.theme.white};
+  background: var(--app-red);
+  color: var(--app-white);
   z-index: 9;
   transition: width 2s, height 4s;
   opacity: .8;

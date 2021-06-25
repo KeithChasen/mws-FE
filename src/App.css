@@ -9,6 +9,14 @@ html {
 
 :root {
     font-size: calc(0.1em + 1vw);
+
+    --app-red: #de354c;
+    --app-brown: #932432;
+    --app-blue: #3c1874;
+    --app-black: #283747;
+    --app-white: #f3f3f3;
+    --app-grey: #dce1e3;
+    --app-green: #164a41;
 }
 
 body {

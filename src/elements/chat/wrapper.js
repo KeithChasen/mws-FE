@@ -3,8 +3,8 @@ import styled, {css} from "styled-components";
 const ChatWrapper = styled.div`
     background: linear-gradient(
       to bottom left,
-      ${(props) => props.theme.black},
-      ${(props) => props.theme.white} 
+      var(--app-black),
+      var(--app-white) 
     );
     display: flex;
     justify-content: center;
@@ -25,35 +25,32 @@ const ChatUserList = styled.ul`
 `;
 
 const ChatUserListItem = styled.li`
-  border-top: 2px solid ${props => `${props.selected ? props.theme.white : props.theme.grey}`};
-  border-left: 2px solid ${props => `${props.selected ? props.theme.white : props.theme.grey}`};
-  border-bottom: 2px solid ${props => `${props.selected ? props.theme.white : props.theme.grey}`};
+  border: 2px solid ${props => `${props.selected ? `var(--app-white)`  : `var(--app-grey)`}`};
   border-radius: ${props => props.selected ? `2vw 0 0 2vw` : '1vw 0 0 1vw'} ;
   padding: 0.8vw;
   margin-bottom: 1vh;
   background: ${props => props.selected ? `linear-gradient(
       to right,
-      ${props.theme.grey},
-      ${props.theme.white}
+      var(--app-grey),
+      var(--app-white)
     )` : `linear-gradient(
       to right,
-      ${props.theme.grey},
-      ${props.theme.black}
+      var(--app-grey),
+      var(--app-black)
     )`};
-  box-shadow: ${props => props.selected ? `5px 5px 10px ${props.theme.grey}` : 'none'};
+  box-shadow: ${props => props.selected ? `5px 5px 10px var(--app-grey)` : 'none'};
 `;
 
 const ChatMessagesHolder = styled.div`
   margin-top: 1vh;
   width: 100%;
   min-height: 100vh;
-  background: ${props => `linear-gradient(
+  background: linear-gradient(
       to right,
-      ${props.theme.white},
-      ${props.theme.grey}
-      )`
-  };
-  border: 2px solid ${props => props.theme.white};
+      var(--app-white),
+      var(--app-grey)
+      );
+  border: 2px solid var(--app-white);
 `;
 
 const ChatMessagesSpace = styled.div`
@@ -71,12 +68,12 @@ const ChatMessagesSpace = styled.div`
 `;
 
 const inputStyles = css`
-  border: 0.2rem solid ${props => props.theme.grey};
+  border: 0.2rem solid var(--app-grey);
   display: inline-block;
   border-radius: 0.5rem;
   font-size: 1.7rem;
   &:focus {
-     outline-color: ${(props) => props.theme.grey};
+     outline-color: var(--app-grey);
    }
 `;
 
@@ -98,9 +95,9 @@ const Message = styled.div`
   float: ${ props => props.received ? 'left' : 'right' };
   font-size: 1.5rem;
   width: 50%;
-  background: ${ props => props.received ? props.theme.blue : props.theme.green };
-  color: ${props => props.theme.grey};
-  border: 0.5rem solid ${props => props.theme.grey};
+  background: ${ props => props.received ? `var(--app-blue)` : `var(--app-green)` };
+  color: var(--app-grey);
+  border: 0.5rem solid var(--app-grey);
   border-radius: 1.7rem;
 `;
 

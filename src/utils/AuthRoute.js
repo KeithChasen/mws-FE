@@ -10,7 +10,7 @@ export const AuthRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={
-        props => user ? <Redirect to='/' /> : <Component {...props} />
+        props => user ? <Redirect to='/account' /> : <Component {...props} />
       }
     />
   );

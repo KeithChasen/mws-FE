@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 
-import { ThemeProvider } from 'styled-components';
-
 import { UserProvider } from "./context/user";
 
 import './App.css';
@@ -22,19 +20,8 @@ import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
 import Chat from "./components/chat/Chat";
 
-const theme = {
-  red: '#de354c',
-  brown: '#932432',
-  blue: '#3c1874',
-  black: '#283747',
-  white: '#f3f3f3',
-  grey: '#dce1e3',
-  green: '#164a41'
-};
-
 function App() {
   return (
-    <ThemeProvider theme={theme}>
     <AuthProvider>
       <UserProvider>
         <BrowserRouter>
@@ -50,7 +37,6 @@ function App() {
         </BrowserRouter>
       </UserProvider>
     </AuthProvider>
-    </ThemeProvider>
   );
 }
 

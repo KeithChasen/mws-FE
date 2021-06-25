@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 const UserListWrapper = styled.div`
     background: linear-gradient(
       to bottom left,
-      ${(props) => props.theme.black},
-      ${(props) => props.theme.white} 
+      var(--app-black),
+      var(--app-white)
     );
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@ const UserListWrapper = styled.div`
 const UserList = styled.ul`
   width: 80vw;
   min-height: 30px;
-  background: ${props => props.theme[props.bgcolor] || props.theme.white};
+  background: ${(props) => props.bgcolor ? `var(--app-${props.bgcolor})` : `var(--app-white)`};
   padding: 20px;
   margin: 10px;
   border-radius: 5px;
@@ -33,12 +33,12 @@ const UserLink = styled(NavLink)`
   justify-content: center;
   text-decoration: none;
   align-items: center;
-  color: ${props => props.theme.black};
-  border: 1px solid ${props => props.theme.black};
+  color: var(--app-black);
+  border: 1px solid var(--app-black);
   font-weight: 700;
 
   &:hover {
-    background: ${props => props.theme.grey};
+    background: var(--app-grey);
   }
 `;
 
