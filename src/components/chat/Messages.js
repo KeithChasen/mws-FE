@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { ChatMessagesHolder, ChatMessagesSpace, ChatInput, ChatButton, Message } from "../../elements/chat/wrapper";
@@ -6,6 +6,7 @@ import { GET_MESSAGES, SEND_MESSAGE } from "../../graphql/chat";
 import { useUserDispatch, useUserState } from "../../context/user";
 
 const Messages = () => {
+  const messagesRef = useRef(null);
   const [getMessages, { loading, data }] = useLazyQuery(GET_MESSAGES);
   const dispatch = useUserDispatch();
   const { users, selectedUser, messages } = useUserState();
@@ -36,23 +37,30 @@ const Messages = () => {
   };
 
   const messagesContent = selectedUser && messages?.[selectedUser] && (
-    <ul>
-      {
-        messages[selectedUser]
+      messages[selectedUser]
           .map(message =>
             <Message key={message.id} received={message.from === selectedUser}>
               {message.content}
             </Message>
           )
-      }
-    </ul>
   );
+
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scroll({
+        top: messagesRef.current.getBoundingClientRect().bottom + window.screenY
+      })
+    }
+  }, [messages, selectedUser]);
 
   const getChatMarkup = text => (
     <>
       <ChatMessagesSpace>
         { text }
-        { messagesContent }
+        <ul ref={messagesRef}>
+          { messagesContent }
+          <div  />
+        </ul>
       </ChatMessagesSpace>
       <form onSubmit={submitForm}>
         <ChatInput onChange={e => setContent(e.target.value)}/>
