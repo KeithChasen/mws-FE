@@ -34,14 +34,14 @@ const Restore = () => {
     restore({ variables: { ...credentials, hash } })
       .then(res => {
         //todo: get message and show it on login page
-        history.push('/');
+        history.push('/login');
       })
       .catch(err => {
         // todo: display errors
         setErrors({
           ...err.graphQLErrors[0].extensions.errors
         });
-        history.push('/');
+        history.push('/login');
       })
   };
 

@@ -77,7 +77,7 @@ const StyledPopUp = styled.div`
   border: 1px solid var(--app-white);
   padding: 1rem;
   border-radius: 10px;
-  background: var(--app-red);
+  background: var(--app-green);
   color: var(--app-white);
   z-index: 9;
   transition: width 2s, height 4s;

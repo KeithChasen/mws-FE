@@ -5,7 +5,6 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ProfileDetails from "../shared/ProfileDetails";
 
 const AccountDetails = ({ edit, user, upload }) => {
-
   const navigateToUsers = () => window.location.href = '/users';
   const navigateToChat = () => window.location.href = '/chat';
 
