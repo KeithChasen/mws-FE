@@ -4,6 +4,7 @@ import { ChatUserListWrapper, ChatUserList, ChatUserListItem } from "../../eleme
 import { useUserDispatch, useUserState } from "../../context/user";
 import { useQuery } from "@apollo/client";
 import { GET_USERS } from "../../graphql/users";
+import { filterUsersWithoutAccount } from "../../utils/helpers";
 
 const ChatUsersList = () => {
   const dispatch = useUserDispatch();
@@ -29,15 +30,19 @@ const ChatUsersList = () => {
       return (<div>No users...</div>);
 
     else
-      return users.map(user => (
-        <ChatUserListItem
-          selected={selectedUser === user.id}
-          key={user.id}
-          onClick={() => dispatch({ type: 'SET_SELECTED_USER', payload: user.id })}
-        >
-          { user.nickname ?? user.id }
-        </ChatUserListItem>
-      ));
+      return filterUsersWithoutAccount(users)
+        .map(user => (
+          <ChatUserListItem
+            selected={selectedUser === user.id}
+            key={user.id}
+            onClick={() => dispatch({
+              type: 'SET_SELECTED_USER',
+              payload: user.id
+            })}
+          >
+            { user.nickname ?? user.id }
+          </ChatUserListItem>
+        ));
   };
 
   return (

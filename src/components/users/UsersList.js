@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useQuery } from "@apollo/client";
 import { GET_USERS } from '../../graphql/users'
 
 import { UserListWrapper, UserList, UserLink } from "../../elements/users/list";
-import {useUserDispatch, useUserState} from "../../context/user";
+import { useUserDispatch, useUserState } from "../../context/user";
+import { filterUsersWithoutAccount } from "../../utils/helpers";
 
 const UsersList = () => {
   const dispatch = useUserDispatch();
@@ -29,7 +30,7 @@ const UsersList = () => {
       return (<div>No users...</div>);
 
     else
-      return users.map(user => (
+      return filterUsersWithoutAccount(users).map(user => (
         <UserLink key={user.id} to={ `/user/${user.id}` }>
           { user.nickname ?? user.id  }
         </UserLink>
