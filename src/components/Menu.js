@@ -24,7 +24,6 @@ const Menu = () => {
     <Header>
       <nav>
         <ul>
-          <StyledLink nav={+true} exact to="/" activeStyle={activeStyle}>Home</StyledLink>
           { authLinks }
         </ul>
       </nav>

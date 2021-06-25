@@ -13,7 +13,6 @@ import { UnAuthRoute } from "./utils/UnAuthRoute";
 
 import Menu from "./components/Menu";
 
-import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Forgot from "./components/Forgot";
@@ -40,7 +39,6 @@ function App() {
       <UserProvider>
         <BrowserRouter>
           <Menu />
-          <UnAuthRoute exact path="/" component={Home} />
           <UnAuthRoute exact path="/account" component={Account} />
           <UnAuthRoute exact path="/users" component={UsersList} />
           <UnAuthRoute exact path="/user/:id" component={User} />
