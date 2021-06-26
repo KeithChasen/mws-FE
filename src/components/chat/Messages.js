@@ -21,7 +21,13 @@ const Messages = () => {
 
   useEffect(() => {
     if (data) {
-      dispatch({ type: 'SET_MESSAGES', payload: { userId: selectedUser, messages: data.getMessages }})
+      dispatch({
+        type: 'SET_MESSAGES',
+        payload: {
+          userId: selectedUser,
+          messages: data.getMessages
+        }
+      })
     }
   }, [data]);
 
@@ -30,6 +36,8 @@ const Messages = () => {
     if (content.trim() === '') {
       return;
     }
+
+    setContent('');
 
     sendMessage({ variables: { to: selectedUser, content }})
       .then(() => {})
@@ -63,7 +71,7 @@ const Messages = () => {
         </ul>
       </ChatMessagesSpace>
       <form onSubmit={submitForm}>
-        <ChatInput onChange={e => setContent(e.target.value)}/>
+        <ChatInput onChange={e => setContent(e.target.value)} value={content}/>
         <ChatButton>Send</ChatButton>
       </form>
     </>

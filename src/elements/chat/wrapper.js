@@ -58,7 +58,7 @@ const ChatMessagesSpace = styled.div`
   height: 80vh;
   
   ul {
-    height: 100%;
+    height: 90%;
     overflow-y: auto;
     width: 100%;
     &::-webkit-scrollbar {
