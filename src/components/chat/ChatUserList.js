@@ -40,7 +40,7 @@ const ChatUsersList = () => {
               payload: user.id
             })}
           >
-            { user.nickname ?? user.id }
+            { `${user.firstname} ${user.lastname}` || user.nickname }
           </ChatUserListItem>
         ));
   };

@@ -32,7 +32,7 @@ const UsersList = () => {
     else
       return filterUsersWithoutAccount(users).map(user => (
         <UserLink key={user.id} to={ `/user/${user.id}` }>
-          { user.nickname ?? user.id  }
+          { `${user.firstname} ${user.lastname}` || user.nickname }
         </UserLink>
       ));
   };
