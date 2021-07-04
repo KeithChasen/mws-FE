@@ -89,6 +89,18 @@ const ChatButton = styled.button`
   ${inputStyles}
 `;
 
+const LoadMoreButton = styled.button`
+  margin: 0 auto;
+  display: block;
+  border: none;
+  background: var(--app-grey);
+  height: 2rem;
+  width: 10rem;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Message = styled.div`
   margin: 0.5rem;
   padding: 1rem;
@@ -111,5 +123,6 @@ export {
       ChatMessagesSpace,
       ChatInput,
       ChatButton,
-      Message
+      Message,
+      LoadMoreButton
 };
