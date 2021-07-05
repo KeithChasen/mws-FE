@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ChatUserListWrapper, ChatUserList, ChatUserListItem } from "../../elements/chat/wrapper";
 import { useUserDispatch, useUserState } from "../../context/user";
 import { useQuery } from "@apollo/client";
-import { GET_USERS } from "../../graphql/users";
+import { GET_CHAT_USERS } from "../../graphql/users";
 import { filterUsersWithoutAccount } from "../../utils/helpers";
 
 const ChatUsersList = () => {
@@ -11,8 +11,10 @@ const ChatUsersList = () => {
   const { users, selectedUser } = useUserState();
   const [error, setError] = useState(null);
 
-  const { loading } = useQuery(GET_USERS, {
-    onCompleted: data => dispatch({ type: 'SET_USERS', payload: data.getUsers }),
+  const { loading } = useQuery(GET_CHAT_USERS, {
+    onCompleted: data => {
+      dispatch({ type: 'SET_USERS', payload: data.getChatUsers })
+    } ,
     onError: error => {
       console.log(error);
       setError('Error occured')
@@ -41,6 +43,7 @@ const ChatUsersList = () => {
             })}
           >
             { `${user.firstname} ${user.lastname}` || user.nickname }
+            { user.recentMessage ? ` - ${user.recentMessage.content}` : '' }
           </ChatUserListItem>
         ));
   };

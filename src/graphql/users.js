@@ -15,6 +15,24 @@ const GET_USERS = gql`
   }
 `;
 
+const GET_CHAT_USERS = gql`
+    query getChatUsers {
+        getChatUsers {
+            id
+            bio
+            age
+            occupation
+            nickname
+            firstname
+            lastname
+            photo
+            recentMessage {
+                content
+            }
+        }
+    }
+`;
+
 const GET_USER = gql`
     query getUser($userId: ID) {
         getUser(userId: $userId) {
@@ -30,4 +48,4 @@ const GET_USER = gql`
     }
 `;
 
-export { GET_USERS, GET_USER };
+export { GET_USERS, GET_USER, GET_CHAT_USERS };
