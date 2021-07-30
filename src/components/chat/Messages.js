@@ -9,6 +9,7 @@ import {
   Message,
   LoadMoreButton
 } from "../../elements/chat/wrapper";
+
 import { GET_MESSAGES, NEW_MESSAGE, SEND_MESSAGE } from "../../graphql/chat";
 import { useUserDispatch, useUserState } from "../../context/user";
 import { AuthContext } from "../../context/auth";
@@ -46,12 +47,12 @@ const Messages = () => {
   }, [newMessageData, error]);
 
   useEffect(() => {
-    if (messagesRef.current && chat[selectedUser]?.messages) {
+    if (messagesRef.current && chat?.[selectedUser]?.messages) {
       messagesRef.current.scroll({
         top: messagesRef.current.getBoundingClientRect().bottom + (window.screenY * chat[selectedUser].messages.length)
       })
     }
-  }, [newMessageData, selectedUser]);
+  }, [selectedUser]);
 
   useEffect(() => {
     setShowLoadMore(true);
@@ -78,12 +79,6 @@ const Messages = () => {
           step: chat?.[selectedUser] ? chat[selectedUser].step + 1 ?? 1 : 1
         }
       });
-
-      if (messagesRef.current) {
-        messagesRef.current.scroll({
-          top: 0
-        })
-      }
     }
   }, [data]);
 

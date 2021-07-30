@@ -18,6 +18,7 @@ const userReducer = (state, action) => {
     case 'SET_MESSAGES':
       let userChatMessages = state.chat?.[action.payload.userId]?.messages ?
         [...state.chat[action.payload.userId].messages] : [];
+
       const newChatMessages = [...action.payload.messages, ...userChatMessages];
 
       return {
@@ -30,6 +31,7 @@ const userReducer = (state, action) => {
             }
           }
       };
+
     case 'ADD_MESSAGE':
       let chatMessages = state.chat?.[action.payload.userId]?.messages ?
         [...state.chat[action.payload.userId].messages] : [];
@@ -52,7 +54,7 @@ const userReducer = (state, action) => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, { users: null, chat: null });
+  const [state, dispatch] = useReducer(userReducer, { users: null, chat: null, selectedUser: null });
 
   return (
     <UserDispatchContext.Provider value={dispatch}>
