@@ -47,6 +47,7 @@ const Messages = () => {
   }, [newMessageData, error]);
 
   useEffect(() => {
+
     if (messagesRef.current && chat?.[selectedUser]?.messages) {
       messagesRef.current.scroll({
         top: messagesRef.current.getBoundingClientRect().bottom + (window.screenY * chat[selectedUser].messages.length)

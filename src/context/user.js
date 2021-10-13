@@ -21,6 +21,8 @@ const userReducer = (state, action) => {
 
       const newChatMessages = [...action.payload.messages, ...userChatMessages];
 
+      newChatMessages.sort((a, b) => a.createdAt - b.createdAt);
+
       return {
         ...state,
         chat: {
@@ -42,7 +44,7 @@ const userReducer = (state, action) => {
           ...state.chat,
           [action.payload.userId]: {
             messages: chatMessages,
-            step: action.payload.step
+            step: state.chat[action.payload.userId].step
           }
         }
       };
