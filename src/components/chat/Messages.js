@@ -26,6 +26,14 @@ const Messages = () => {
   const [showLoadMore, setShowLoadMore] = useState(true);
   const [sendMessage] = useMutation(SEND_MESSAGE);
 
+  const scrollIt = () => {
+    if (messagesRef.current && chat?.[selectedUser]?.messages) {
+      messagesRef.current.scrollTo({
+        top: messagesRef.current.getBoundingClientRect().bottom + (window.screenY * chat[selectedUser].messages.length) + 1000
+      })
+    }
+  };
+
   useEffect(() => {
     if (error) {
       console.log(error, 'subscription error')
@@ -44,15 +52,13 @@ const Messages = () => {
         }
       });
     }
+
+    scrollIt();
+
   }, [newMessageData, error]);
 
   useEffect(() => {
-
-    if (messagesRef.current && chat?.[selectedUser]?.messages) {
-      messagesRef.current.scroll({
-        top: messagesRef.current.getBoundingClientRect().bottom + (window.screenY * chat[selectedUser].messages.length)
-      })
-    }
+    scrollIt();
   }, [selectedUser]);
 
   useEffect(() => {
@@ -105,25 +111,30 @@ const Messages = () => {
           )
   );
 
+  messagesContent && messagesContent.push(<Message pseudo>...</Message>);
+
   const loadMessages = e => {
     e.preventDefault();
     const step = chat?.[selectedUser] ? chat[selectedUser].step ?? 0 : 0;
     getMessages({ variables: { from: selectedUser, step }})
   };
 
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter') {
+      submitForm(e);
+    }
+  };
+
   const getChatMarkup = text => (
     <>
-      <ChatMessagesSpace>
+      <ChatMessagesSpace ref={messagesRef}>
         { text }
-        <ul ref={messagesRef}>
-          { showLoadMore && <LoadMoreButton onClick={loadMessages}>{ loading ? 'Loading...' : 'Load More...' }</LoadMoreButton> }
+          { showLoadMore &&
+          <LoadMoreButton onClick={loadMessages}>
+            { loading ? 'Loading...' : 'Load More...' }
+          </LoadMoreButton> }
           { messagesContent }
-        </ul>
       </ChatMessagesSpace>
-      <form onSubmit={submitForm}>
-        <ChatInput onChange={e => setContent(e.target.value)} value={content}/>
-        <ChatButton>Send</ChatButton>
-      </form>
     </>
   );
 
@@ -145,6 +156,10 @@ const Messages = () => {
   return (
     <ChatMessagesHolder>
       { getContent() }
+      <>
+        <ChatInput onChange={e => setContent(e.target.value)} value={content} onKeyPress={keyPressHandler}/>
+        <ChatButton onClick={submitForm}>Send</ChatButton>
+      </>
     </ChatMessagesHolder>
   );
 };

@@ -44,7 +44,7 @@ const ChatUserListItem = styled.li`
 const ChatMessagesHolder = styled.div`
   margin-top: 1vh;
   width: 100%;
-  min-height: 100vh;
+  height: 90vh;
   background: linear-gradient(
       to right,
       var(--app-white),
@@ -55,16 +55,14 @@ const ChatMessagesHolder = styled.div`
 
 const ChatMessagesSpace = styled.div`
   position: relative;
-  height: 80vh;
+  height: 90vh;
   
-  ul {
-    height: 90%;
-    overflow-y: auto;
-    width: 100%;
-    &::-webkit-scrollbar {
+  overflow-y: scroll;
+  width: 100%;
+    
+   &::-webkit-scrollbar {
       display: none;
-    }
-  }
+   }
 `;
 
 const inputStyles = css`
@@ -111,6 +109,7 @@ const Message = styled.div`
   color: var(--app-grey);
   border: 0.5rem solid var(--app-grey);
   border-radius: 1.7rem;
+  visibility: ${ props => props.pseudo ? `hidden` : `visible` };
 `;
 
 export {
