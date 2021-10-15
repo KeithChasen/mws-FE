@@ -13,6 +13,9 @@ const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_WS_SERVER,
   options: {
     reconnect: true,
+    timeout: process.env.WS_SERVER_TIMEOUT,
+    reconnectionAttempts: 50,
+    lazy: true,
     connectionParams: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
