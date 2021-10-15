@@ -136,7 +136,6 @@ const Messages = () => {
           </LoadMoreButton> }
           { messagesContent }
       </ChatMessagesSpace>
-      { sendForm ??
       <SendForm>
         <ChatInput
           onChange={e => setContent(e.target.value)}
@@ -144,7 +143,7 @@ const Messages = () => {
           onKeyPress={keyPressHandler}
         />
         <ChatButton onClick={submitForm}>Send</ChatButton>
-      </SendForm> }
+      </SendForm>
     </>
   );
 
