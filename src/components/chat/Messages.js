@@ -7,7 +7,8 @@ import {
   ChatInput,
   ChatButton,
   Message,
-  LoadMoreButton
+  LoadMoreButton,
+  SendForm
 } from "../../elements/chat/wrapper";
 
 import { GET_MESSAGES, NEW_MESSAGE, SEND_MESSAGE } from "../../graphql/chat";
@@ -125,7 +126,7 @@ const Messages = () => {
     }
   };
 
-  const getChatMarkup = text => (
+  const getChatMarkup = (text, sendForm) => (
     <>
       <ChatMessagesSpace ref={messagesRef}>
         { text }
@@ -135,12 +136,21 @@ const Messages = () => {
           </LoadMoreButton> }
           { messagesContent }
       </ChatMessagesSpace>
+      { sendForm ??
+      <SendForm>
+        <ChatInput
+          onChange={e => setContent(e.target.value)}
+          value={content}
+          onKeyPress={keyPressHandler}
+        />
+        <ChatButton onClick={submitForm}>Send</ChatButton>
+      </SendForm> }
     </>
   );
 
   const getContent = () => {
     if(!data && !loading) {
-      return <div>Select someone to talk to...</div>
+      return <div>Choose someone to talk to...</div>
     }
 
     if (!chat?.[selectedUser]?.messages.length) {
@@ -156,10 +166,6 @@ const Messages = () => {
   return (
     <ChatMessagesHolder>
       { getContent() }
-      <>
-        <ChatInput onChange={e => setContent(e.target.value)} value={content} onKeyPress={keyPressHandler}/>
-        <ChatButton onClick={submitForm}>Send</ChatButton>
-      </>
     </ChatMessagesHolder>
   );
 };
