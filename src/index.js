@@ -10,7 +10,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import App from './App';
 
 const wsLink = new WebSocketLink({
-  uri: process.env.REACT_APP_WS_SERVER,
+  uri: process.env.WS_PROTOCOL+process.env.REACT_APP_WS_SERVER,
   options: {
     reconnect: true,
     timeout: process.env.WS_SERVER_TIMEOUT,
@@ -34,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = authLink.concat(createUploadLink({
-  uri: process.env.REACT_APP_SERVER
+  uri: process.env.HTTP_PROTOCOL+process.env.REACT_APP_SERVER
 }));
 
 const splitLink = split(({ query }) => {
