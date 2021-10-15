@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 const GET_MESSAGES = gql`
-    query getMessages ($from: ID) {
-        getMessages(from: $from) {
+    query getMessages ($from: ID, $step: Int) {
+        getMessages(from: $from, step: $step) {
             id content from to createdAt
         }
     }

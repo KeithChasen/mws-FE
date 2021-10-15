@@ -26,6 +26,7 @@ function App() {
       <UserProvider>
         <BrowserRouter>
           <Menu />
+          <UnAuthRoute exact path="/" component={Account} />
           <UnAuthRoute exact path="/account" component={Account} />
           <UnAuthRoute exact path="/users" component={UsersList} />
           <UnAuthRoute exact path="/user/:id" component={User} />

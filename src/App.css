@@ -12,11 +12,14 @@ html {
 
     --app-red: #de354c;
     --app-brown: #932432;
-    --app-blue: #3c1874;
+    --app-blue: #4682B4;
+    --app-charcoalBlue: #36454F;
     --app-black: #283747;
     --app-white: #f3f3f3;
     --app-grey: #dce1e3;
     --app-green: #164a41;
+
+    --app-royalBlue: #4169E1;
 }
 
 body {
