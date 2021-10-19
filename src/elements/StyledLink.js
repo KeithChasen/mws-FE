@@ -11,6 +11,14 @@ const StyledLink = styled(NavLink)`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  
+  font-size: 1rem;
+  
+  @media only screen 
+   and (min-device-width: 320px)
+   and (max-device-width: 812px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export default StyledLink;
