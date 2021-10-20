@@ -39,8 +39,9 @@ nav .mobile-header {
     background: var(--app-black);
     position: absolute;
     width: 100%;
-    top: 5vh;
+    top: 7vh;
     left: 0;
+    z-index: 1;
 }
 
 .mobile-header #mobile-logo {

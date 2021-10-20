@@ -6,13 +6,20 @@ import { faBars, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 export const Mobile = ({user, logout}) => {
   const activeStyle = { color: 'grey' };
   const [displayMenu, setDisplayMenu] = useState(false);
+
   const authLinks = user ? (
     <>
-      <StyledLink nav={+true} to="/account">
+      <StyledLink nav={+true} to="/account" activeStyle={activeStyle}>
         Account
       </StyledLink>
       <StyledLink nav={+true} to="/account" onClick={logout}>
         Logout
+      </StyledLink>
+      <StyledLink nav={+true} to="/users" activeStyle={activeStyle}>
+        Users
+      </StyledLink>
+      <StyledLink nav={+true} to="/chat" activeStyle={activeStyle}>
+        Chat
       </StyledLink>
     </>
   ) : (

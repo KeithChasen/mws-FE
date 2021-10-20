@@ -11,10 +11,6 @@ const AccountDetails = ({ edit, user, upload }) => {
   return (
     <>
       <StyledPanel bgcolor='grey' size={30}>
-        <MenuButton onClick={() => edit(true)}>
-          <FontAwesomeIcon icon={faEdit}/>
-          Edit
-        </MenuButton>
         <MenuButton onClick={navigateToUsers}>
           <FontAwesomeIcon icon={faEdit}/>
           Users
@@ -29,7 +25,7 @@ const AccountDetails = ({ edit, user, upload }) => {
         </MenuButton>
       </StyledPanel>
 
-      <ProfileDetails loadedUser={user} upload={upload} panelSize={70}/>
+      <ProfileDetails loadedUser={user} upload={upload} edit={edit} panelSize={70}/>
     </>
   );
 };
