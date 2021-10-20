@@ -57,6 +57,65 @@ const StyledForm = styled.form`
     }
 `;
 
+const StyledFileInput = styled.input`
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+`;
+
+const StyledFileLabel = styled.label`
+    position: relative;
+    width: 20vw;
+    height: 3vh;
+    border-radius: 5px;
+    border: 1px solid var(--app-white);
+    background: linear-gradient(40deg, var(--app-white), var(--app-black));
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--app-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 812px) {
+        width: 70vw;
+        font-size: 3rem;
+      }
+`;
+
+const StyledFileButton = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4vh;
+  padding: 0 1vw;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  border: 1px solid var(--app-white);
+  margin-top: 1vh;
+  width: 15vw;
+  font-size: 1.5rem;
+  color: var(--app-black);
+  
+  @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 812px) {
+        width: 70vw;
+        font-size: 3rem;
+      }
+`;
+
 const StyledInput = styled.input`
   display: block;
   width: 100%;
@@ -86,6 +145,7 @@ const StyledButton = styled.button`
   padding: 0 15px;
   cursor: pointer;
   box-sizing: border-box;
+  margin-bottom: 1vh;
   
   @media only screen 
    and (min-device-width: 320px)
@@ -126,4 +186,15 @@ const StyledPopUp = styled.div`
   opacity: .8;
 `;
 
-export { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage, StyledPopUp };
+export {
+  StyledFormWrapper,
+  StyledForm,
+  StyledInput,
+  StyledButton,
+  StyledError,
+  StyledMessage,
+  StyledPopUp,
+  StyledFileInput,
+  StyledFileLabel,
+  StyledFileButton
+};
