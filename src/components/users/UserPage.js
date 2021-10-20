@@ -14,7 +14,7 @@ const UserPage = () => {
       <div>Loading</div> :
       error ?
         <div>Wasn't able to fetch user info</div> :
-        <ProfileDetails loadedUser={ data.getUser } panelSize={90} fullSize={true} />
+        <ProfileDetails loadedUser={ data.getUser } panelSize={90} fullSize={true} mobileWidth={85}/>
   );
 };
 

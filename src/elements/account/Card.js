@@ -20,14 +20,21 @@ const StyledCardWrapper = styled.div`
     border: 2px var(--app-white) solid;
     border-radius: 50px;
     box-shadow: 5px 5px 10px var(--app-grey);
+    
+    @media only screen 
+       and (min-device-width: 320px)
+       and (max-device-width: 812px) {
+         border: none;
+         box-shadow: none;
+       }
 `;
 
 const StyledPanel = styled.div`
   width: ${props => props.size || 10}%;
   background: ${(props) => props.bgcolor ? `var(--app-${props.bgcolor})` : `var(--app-white)`};
-  padding: 20px;
-  margin: 10px;
-  border-radius: 50px;
+  padding: 3vw;
+  margin: 2vw;
+  border-radius: 2vw;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -36,8 +43,10 @@ const StyledPanel = styled.div`
   @media only screen 
        and (min-device-width: 320px)
        and (max-device-width: 812px) {
-         width: ${(props) => props.fullSize ? `100%` : `0` };
+         width: ${(props) => props.fullSize ? `${props.mobileWidth}vw` : `90vw` };
          display: ${(props) => props.fullSize ? `block` : `none` };
+         margin-left: auto;
+         margin-right: auto;
        }
 `;
 

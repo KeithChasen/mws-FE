@@ -25,7 +25,7 @@ const AccountDetails = ({ edit, user, upload }) => {
         </MenuButton>
       </StyledPanel>
 
-      <ProfileDetails loadedUser={user} upload={upload} edit={edit} panelSize={70}/>
+      <ProfileDetails loadedUser={user} upload={upload} edit={edit} panelSize={70} mobileWidth={100}/>
     </>
   );
 };

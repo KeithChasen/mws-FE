@@ -5,7 +5,7 @@ import { faEdit, faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import DefaultAvatar from "../../media/avatar-default.png";
 import { AuthContext } from "../../context/auth";
 
-const ProfileDetails = ({ loadedUser, upload, panelSize, edit }) => {
+const ProfileDetails = ({ loadedUser, upload, panelSize, edit, mobileWidth }) => {
   const { user } = useContext(AuthContext);
 
   const changePhotoButton = user.id === loadedUser.id ? (
@@ -48,7 +48,7 @@ const ProfileDetails = ({ loadedUser, upload, panelSize, edit }) => {
   };
 
   return (
-    <StyledPanel bgcolor='white' size={panelSize} fullSize={true}>
+    <StyledPanel bgcolor='white' size={panelSize} fullSize={true} mobileWidth={mobileWidth}>
       <CardItem borderColor="grey" avatar={true}>
         <img src={ loadedUser.photo ?? DefaultAvatar } onError={onImageError} alt=''/>
         <div className="edit-buttons">
