@@ -12,7 +12,7 @@ const ChatWrapper = styled.div`
 `;
 
 const ChatItemWrapper = styled.div`
-  width: ${props => props.width || 30}%;
+  width: ${props => props.width || 0}%;
 `;
 
 const ChatUserListWrapper = styled.div`
