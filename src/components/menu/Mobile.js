@@ -18,7 +18,7 @@ export const Mobile = ({user, logout}) => {
       <StyledLink nav={+true} to="/users" activeStyle={activeStyle}>
         Users
       </StyledLink>
-      <StyledLink nav={+true} to="/chat" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/chat" onClick={() => window.location.href = '/chat'} activeStyle={activeStyle}>
         Chat
       </StyledLink>
     </>
