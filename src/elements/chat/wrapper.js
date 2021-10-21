@@ -103,6 +103,14 @@ const LoadMoreButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  
+  @media 
+  only screen and (min-device-width: 280px)
+   and (max-device-width: 1024px) {
+     margin-bottom: 2vh;
+     height: 4vh;
+     width: 100%;
+   }
 `;
 
 const Message = styled.div`
