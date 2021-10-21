@@ -22,8 +22,8 @@ const StyledCardWrapper = styled.div`
     box-shadow: 5px 5px 10px var(--app-grey);
     
     @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
          border: none;
          box-shadow: none;
        }
@@ -41,8 +41,8 @@ const StyledPanel = styled.div`
   }
   
   @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
          width: ${(props) => props.fullSize ? `${props.mobileWidth}vw` : `90vw` };
          display: ${(props) => props.fullSize ? `block` : `none` };
          margin-left: auto;
@@ -70,8 +70,8 @@ const CardItem = styled.div`
     flex-direction: row;
     
     @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
          display: inherit;
          flex-direction: column;
        }
@@ -90,8 +90,8 @@ const CardItem = styled.div`
     font-size: 1.5rem;
     
     @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
            font-size: 2.5rem;
        }
   }
@@ -118,8 +118,8 @@ const CardItem = styled.div`
     box-shadow: 3px 3px 3px var(--app-white);
     
     @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
          width: 25rem;
          height: 25rem;
        }
@@ -148,8 +148,8 @@ const MenuButton = styled.button`
         border-width: 2px;  
         
        @media only screen 
-         and (min-device-width: 320px)
-         and (max-device-width: 812px) {
+         and (min-device-width: 280px)
+         and (max-device-width: 1024px) {
            width: 80%;
            height: 3.7vh;
            font-size: 1.7vh;

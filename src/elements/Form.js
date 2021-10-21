@@ -19,8 +19,8 @@ const StyledFormWrapper = styled.div`
     height: 100vh;
     
      @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
      align-items: flex-start;
    }
 `;
@@ -35,8 +35,8 @@ const StyledForm = styled.form`
   box-shadow: 0 0 20px 0 var(--app-black);
   
   @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
      width: 90%;
      margin-top: 2vh;
      
@@ -50,8 +50,8 @@ const StyledForm = styled.form`
       font-size: 1.5rem;
       
       @media only screen 
-       and (min-device-width: 320px)
-       and (max-device-width: 812px) {
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
         font-size: 2rem;
       }
     }
@@ -83,8 +83,8 @@ const StyledFileLabel = styled.label`
     margin-right: auto;
     
     @media only screen
-      and (min-device-width: 320px)
-      and (max-device-width: 812px) {
+      and (min-device-width: 280px)
+      and (max-device-width: 1024px) {
         width: 70vw;
         font-size: 3rem;
       }
@@ -109,8 +109,8 @@ const StyledFileButton = styled.button`
   color: var(--app-black);
   
   @media only screen
-      and (min-device-width: 320px)
-      and (max-device-width: 812px) {
+      and (min-device-width: 280px)
+      and (max-device-width: 1024px) {
         width: 70vw;
         font-size: 3rem;
       }
@@ -127,8 +127,8 @@ const StyledInput = styled.input`
    }
    
    @media only screen 
-   and (min-device-width: 320px)
-   and (max-device-width: 812px) {
+   and (min-device-width: 280px)
+   and (max-device-width: 1024px) {
     width: 90%;
   }
 `;
@@ -148,8 +148,8 @@ const StyledButton = styled.button`
   margin-bottom: 1vh;
   
   @media only screen 
-   and (min-device-width: 320px)
-   and (max-device-width: 812px) {
+   and (min-device-width: 280px)
+   and (max-device-width: 1024px) {
     width: 93%;
     font-size: 3rem;
     padding-left: 1rem;

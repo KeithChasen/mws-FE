@@ -21,8 +21,8 @@ const Header = styled.header`
   }
   
   @media 
-  only screen and (min-device-width: 320px)
-   and (max-device-width: 812px) {
+  only screen and (min-device-width: 280px)
+   and (max-device-width: 1024px) {
      .desktop-header {
       display: none;
      }

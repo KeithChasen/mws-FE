@@ -8,7 +8,7 @@ html {
 }
 
 :root {
-    font-size: calc(0.1em + 1vw);
+    font-size: calc(0.15em + 1vw);
 
     --app-red: #de354c;
     --app-brown: #932432;
@@ -86,8 +86,8 @@ nav .mobile-header {
 }
 
 @media only screen
-and (min-device-width: 320px)
-and (max-device-width: 812px) {
+and (min-device-width: 280px)
+and (max-device-width: 1024px) {
     .uploadAvatar {
         justify-content: flex-start;
     }
