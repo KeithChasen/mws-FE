@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 
 import { UPLOAD_AVATAR } from "../../graphql/user";
 import { AuthContext } from "../../context/auth";
+import { StyledFileButton, StyledFileInput, StyledFileLabel } from "../../elements/Form";
 
 const UploadAvatar = ({ edit, setMessage }) => {
 
@@ -29,19 +30,18 @@ const UploadAvatar = ({ edit, setMessage }) => {
     setFile(e.target.files[0]);
   };
 
-  const content = loading ?
+  return loading ?
     (<p>Loading...</p>) :
     (
-      <div>
-        Upload Avatar
+      <div className="uploadAvatar">
+        <h1>Upload You Profile Photo</h1>
         <form onSubmit={submitForm}>
-          <input type="file" name='avatar' onChange={onChange}/>
-          <button>Save</button>
+          <StyledFileLabel htmlFor="avatar">Select File</StyledFileLabel>
+          <StyledFileInput type="file" id="avatar" name='avatar' onChange={onChange}/>
+          <StyledFileButton>Save</StyledFileButton>
         </form>
       </div>
     );
-
-  return content;
 };
 
 export default UploadAvatar;

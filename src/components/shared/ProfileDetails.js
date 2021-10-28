@@ -1,24 +1,31 @@
 import React, {useContext} from 'react';
 import { CardItem, MenuButton, StyledPanel } from "../../elements/account/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import DefaultAvatar from "../../media/avatar-default.png";
 import { AuthContext } from "../../context/auth";
 
-const ProfileDetails = ({ loadedUser, upload, panelSize, fullSize }) => {
+const ProfileDetails = ({ loadedUser, upload, panelSize, edit, mobileWidth }) => {
   const { user } = useContext(AuthContext);
 
   const changePhotoButton = user.id === loadedUser.id ? (
-    <MenuButton onClick={() => upload(true)} upload>
+    <MenuButton onClick={() => upload(true)} upload={true}>
+      <FontAwesomeIcon icon={faPhotoVideo}/>
+        Change photo
+    </MenuButton>
+  ) : null;
+
+  const editButton = user.id === loadedUser.id ? (
+    <MenuButton onClick={() => edit(true)} upload={true}>
       <FontAwesomeIcon icon={faEdit}/>
-      Change avatar
+      Edit
     </MenuButton>
   ) : null;
 
   const emailLabel = user.id === loadedUser.id ? (
     <CardItem borderColor="grey">
-      <span>Email</span>
-      { user.email }
+      <div className="label">Email</div>
+      <div className="card-value">{ user.email }</div>
     </CardItem>
   ) : null;
 
@@ -41,32 +48,36 @@ const ProfileDetails = ({ loadedUser, upload, panelSize, fullSize }) => {
   };
 
   return (
-    <StyledPanel bgcolor='white' size={panelSize} fullSize={fullSize}>
-      <CardItem borderColor="grey" avatar>
+    <StyledPanel bgcolor='white' size={panelSize} fullSize={true} mobileWidth={mobileWidth}>
+      <CardItem borderColor="grey" avatar={true}>
         <img src={ loadedUser.photo ?? DefaultAvatar } onError={onImageError} alt=''/>
-        { changePhotoButton }
+        <div className="edit-buttons">
+          { changePhotoButton }
+          { editButton }
+        </div>
       </CardItem>
+
       { isVisibleAccountNote() }
       <CardItem borderColor="grey">
-        <span>Full Name</span>
-        { `${loadedUser.firstname ?? ''} ${loadedUser.lastname ?? ''}`}
+        <div className="label">Full Name</div>
+        <div className="card-value">{ `${loadedUser.firstname ?? ''} ${loadedUser.lastname ?? ''}`}</div>
       </CardItem>
       <CardItem borderColor="grey">
-        <span>Nickname</span>
-        <div>{ loadedUser.nickname }</div>
+        <div className="label">Nickname</div>
+        <div className="card-value">{ loadedUser.nickname }</div>
       </CardItem>
       { emailLabel }
       <CardItem borderColor="grey">
-        <span>Age</span>
-        { loadedUser.age }
+        <div className="label">Age</div>
+        <div className="card-value">{ loadedUser.age }</div>
       </CardItem>
       <CardItem borderColor="grey">
-        <span>Occupation</span>
-        { loadedUser.occupation }
+        <div className="label">Occupation</div>
+        <div className="card-value">{ loadedUser.occupation }</div>
       </CardItem>
       <CardItem borderColor="grey">
-        <span>Bio</span>
-        { loadedUser.bio }
+        <div className="label">Bio</div>
+        <div className="card-value">{ loadedUser.bio }</div>
       </CardItem>
     </StyledPanel>
   );

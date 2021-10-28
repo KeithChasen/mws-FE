@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ChatUserListWrapper, ChatUserList, ChatUserListItem } from "../../elements/chat/wrapper";
+import { ChatUserList, ChatUserListItem } from "../../elements/chat/wrapper";
 import { useUserDispatch, useUserState } from "../../context/user";
 import { useQuery } from "@apollo/client";
 import { GET_CHAT_USERS } from "../../graphql/users";
@@ -49,11 +49,11 @@ const ChatUsersList = () => {
   };
 
   return (
-    <ChatUserListWrapper>
+    <>
       <ChatUserList>
         { getContent() }
       </ChatUserList>
-    </ChatUserListWrapper>
+    </>
   );
 };
 

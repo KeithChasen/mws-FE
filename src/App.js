@@ -9,7 +9,7 @@ import { AuthProvider } from "./context/auth";
 import { AuthRoute } from "./utils/AuthRoute";
 import { UnAuthRoute } from "./utils/UnAuthRoute";
 
-import Menu from "./components/Menu";
+import Menu from "./components/menu/Menu";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
