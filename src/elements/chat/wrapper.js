@@ -1,11 +1,8 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
+import { backgroundLinearGradient, inputStyles } from "../styledHelpers";
 
 const ChatWrapper = styled.div`
-    background: linear-gradient(
-      to bottom left,
-      var(--app-black),
-      var(--app-white) 
-    );
+    ${backgroundLinearGradient('to bottom left', 'black', 'white')};
     display: flex;
     justify-content: center;
     min-height: 100vh;
@@ -15,53 +12,40 @@ const ChatItemWrapper = styled.div`
   width: ${props => props.width || 0}%;
 `;
 
-const ChatUserListWrapper = styled.div`
-
-`;
-
 const ChatUserList = styled.ul`
-  margin-top: 1vh;
   list-style: none;
+  margin-top: 1vh;
 `;
 
 const ChatUserListItem = styled.li`
+  ${
+      props => props.selected ? 
+        backgroundLinearGradient('to right', 'grey', 'white') : 
+        backgroundLinearGradient('to right', 'grey', 'black')
+  };
   border: 2px solid ${props => `${props.selected ? `var(--app-white)`  : `var(--app-grey)`}`};
   border-radius: ${props => props.selected ? `2vw 0 0 2vw` : '1vw 0 0 1vw'} ;
-  padding: 0.8vw;
-  margin-bottom: 1vh;
-  background: ${props => props.selected ? `linear-gradient(
-      to right,
-      var(--app-grey),
-      var(--app-white)
-    )` : `linear-gradient(
-      to right,
-      var(--app-grey),
-      var(--app-black)
-    )`};
   box-shadow: ${props => props.selected ? `5px 5px 10px var(--app-grey)` : 'none'};
+  margin-bottom: 1vh;
+  padding: 0.8vw;
 `;
 
 const ChatMessagesHolder = styled.div`
-  margin-top: 1vh;
-  width: 100%;
-  height: 90vh;
-  background: linear-gradient(
-      to right,
-      var(--app-white),
-      var(--app-grey)
-      );
+  align-items: center;
+  ${backgroundLinearGradient('to right', 'white', 'grey')};
   border: 2px solid var(--app-white);
   display: flex;
   flex-direction: column;
+  height: 90vh;
   justify-content: center;
-  align-items: center;
+  margin-top: 1vh;
+  width: 100%;
 `;
 
 const ChatMessagesSpace = styled.div`
-  position: relative;
   height: 90vh;
-  
   overflow-y: scroll;
+  position: relative;
   width: 100%;
     
    &::-webkit-scrollbar {
@@ -69,15 +53,7 @@ const ChatMessagesSpace = styled.div`
    }
 `;
 
-const inputStyles = css`
-  border: 0.2rem solid var(--app-grey);
-  display: inline-block;
-  border-radius: 0.5rem;
-  font-size: 1.7rem;
-  &:focus {
-     outline-color: var(--app-grey);
-  }
-`;
+
 
 const ChatInput = styled.input`
   width: 80%;
@@ -86,20 +62,21 @@ const ChatInput = styled.input`
 `;
 
 const ChatButton = styled.button`
-  width: 20%;
-  margin-left: 0.1rem;
   background: var(--app-royalBlue);
   color: var(--app-white);
+  margin-left: 0.1rem;
+  width: 20%;
   ${inputStyles}
 `;
 
 const LoadMoreButton = styled.button`
-  margin: 0 auto;
-  display: block;
-  border: none;
   background: var(--app-grey);
+  border: none;
+  display: block;
   height: 2rem;
+  margin: 0 auto;
   width: 10rem;
+  
   &:hover {
     cursor: pointer;
   }
@@ -107,23 +84,10 @@ const LoadMoreButton = styled.button`
   @media 
   only screen and (min-device-width: 280px)
    and (max-device-width: 1024px) {
-     margin-bottom: 2vh;
      height: 4vh;
+     margin-bottom: 2vh;
      width: 100%;
    }
-`;
-
-const Message = styled.div`
-  margin: 0.5rem;
-  padding: 0.7rem;
-  float: ${ props => props.received ? 'left' : 'right' };
-  font-size: 1.5rem;
-  width: 75%;
-  background: ${ props => props.received ? `var(--app-blue)` : `var(--app-charcoalBlue)` };
-  color: var(--app-grey);
-  border: 0.3rem solid var(--app-grey);
-  border-radius: .7rem;
-  visibility: ${ props => props.pseudo ? `hidden` : `visible` };
 `;
 
 const SendForm = styled.div`
@@ -141,10 +105,22 @@ const SendForm = styled.div`
   }
 `;
 
+const Message = styled.div`
+  background: ${ props => props.received ? `var(--app-blue)` : `var(--app-charcoalBlue)` };
+  border: 0.3rem solid var(--app-grey);
+  border-radius: .7rem;
+  color: var(--app-grey);
+  float: ${ props => props.received ? 'left' : 'right' };
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  padding: 0.7rem;
+  visibility: ${ props => props.pseudo ? `hidden` : `visible` };
+  width: 75%;
+`;
+
 export {
       ChatWrapper,
       ChatItemWrapper,
-      ChatUserListWrapper,
       ChatUserList,
       ChatUserListItem,
       ChatMessagesHolder,
