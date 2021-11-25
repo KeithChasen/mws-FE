@@ -18,5 +18,10 @@ const inputStyles = css`
   }
 `;
 
+const friendsPanelStyles = css`
+  background: var(--app-white);
+  border: 1px solid var(--app-white);
+`;
 
-export { backgroundLinearGradient, inputStyles };
+
+export { backgroundLinearGradient, inputStyles, friendsPanelStyles };
