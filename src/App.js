@@ -19,6 +19,7 @@ import Account from "./components/account/Account";
 import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
 import Chat from "./components/chat/Chat";
+import Friends from "./components/friends/Friends";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
           <UnAuthRoute exact path="/users" component={UsersList} />
           <UnAuthRoute exact path="/user/:id" component={User} />
           <UnAuthRoute exact path="/chat" component={Chat} />
+          <UnAuthRoute exact path="/friends" component={Friends} />
+
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
           <AuthRoute exact path="/forgot" component={Forgot} />
