@@ -20,4 +20,16 @@ const FriendsPanel = styled.div`
   ${friendsPanelStyles}
 `;
 
-export { FriendsWrapper, RequestsPanel, FriendsPanel };
+const AddToFriendsButton = styled.button`
+  background: var(--app-grey);
+  border: 3px solid var(--app-white);
+  border-radius: 0.3rem;
+  display: block;
+  height: 2rem;
+  margin: 1vh auto;
+  width: 10rem;
+  color: var(--app-black);
+  font-weight: bold;
+`;
+
+export { FriendsWrapper, RequestsPanel, FriendsPanel, AddToFriendsButton };
