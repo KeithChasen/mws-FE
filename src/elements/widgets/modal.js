@@ -21,16 +21,6 @@ const ModalWrapper = styled.div`
   left: 30%;
 `;
 
-const ModalCrossButtonWrapper = styled.div`
-  text-align: right;
-`;
-
-const ModalCrossButton = styled.button`
-  background: transparent;
-  border: none;
-  margin: 0.2rem;
-`;
-
 const ModalInfoWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -42,11 +32,11 @@ const ModalInfoWrapper = styled.div`
 const modalSharedPartsStyles = css`
   background: var(--app-white);
   width: 90%;
-  margin-bottom: 0.2rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 1rem auto;
 `;
 
 const ModalHeader = styled.div`
@@ -57,12 +47,12 @@ const ModalBody = styled.div`
   height: 10rem;
   ${modalSharedPartsStyles}
 `;
-const ModalActionButtonsWrapper = styled.div`
+const ModalButtonsWrapper = styled.div`
   height: 3rem;
   ${modalSharedPartsStyles}
 `;
 
-const ModalActionButton = styled.button`
+const ModalButton = styled.button`
   min-width: 10rem;
   min-height: 2rem;
   margin: 1rem;
@@ -80,11 +70,9 @@ const ModalActionButton = styled.button`
 export {
   ModalBackground,
   ModalWrapper,
-  ModalCrossButtonWrapper,
-  ModalCrossButton,
   ModalInfoWrapper,
   ModalHeader,
   ModalBody,
-  ModalActionButtonsWrapper,
-  ModalActionButton
+  ModalButtonsWrapper,
+  ModalButton
 };
