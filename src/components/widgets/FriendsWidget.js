@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useFriendsState, useFriendsDispatch } from "../../context/friends";
 import { useMutation } from "@apollo/client";
 import { AddToFriendsButton } from "../../elements/friends";
 import Modal from "./Modal";

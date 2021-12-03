@@ -1,11 +1,8 @@
 import React, { createContext, useReducer, useContext } from 'react';
+import { friendsReducer } from "./reducers/friends";
 
 const FriendsStateContext = createContext();
 const FriendsDispatchContext = createContext();
-
-const friendsReducer = (state, action) => {
-
-};
 
 export const FriendsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(friendsReducer, { friends: null });
@@ -13,7 +10,7 @@ export const FriendsProvider = ({ children }) => {
   return (
     <FriendsDispatchContext.Provider value={dispatch}>
       <FriendsStateContext.Provider value={state}>
-
+        { children }
       </FriendsStateContext.Provider>
     </FriendsDispatchContext.Provider>
   );

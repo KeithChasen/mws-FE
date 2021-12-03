@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 
 import { UserProvider } from "./context/user";
+import { FriendsProvider } from "./context/friends";
 
 import './App.css';
 
@@ -25,20 +26,22 @@ function App() {
   return (
     <AuthProvider>
       <UserProvider>
-        <BrowserRouter>
-          <Menu />
-          <UnAuthRoute exact path="/" component={Account} />
-          <UnAuthRoute exact path="/account" component={Account} />
-          <UnAuthRoute exact path="/users" component={UsersList} />
-          <UnAuthRoute exact path="/user/:id" component={User} />
-          <UnAuthRoute exact path="/chat" component={Chat} />
-          <UnAuthRoute exact path="/friends" component={Friends} />
+        <FriendsProvider>
+          <BrowserRouter>
+            <Menu />
+            <UnAuthRoute exact path="/" component={Account} />
+            <UnAuthRoute exact path="/account" component={Account} />
+            <UnAuthRoute exact path="/users" component={UsersList} />
+            <UnAuthRoute exact path="/user/:id" component={User} />
+            <UnAuthRoute exact path="/chat" component={Chat} />
+            <UnAuthRoute exact path="/friends" component={Friends} />
 
-          <AuthRoute exact path="/login" component={Login} />
-          <AuthRoute exact path="/register" component={Register} />
-          <AuthRoute exact path="/forgot" component={Forgot} />
-          <AuthRoute exact path="/restore/:hash" component={Restore} />
-        </BrowserRouter>
+            <AuthRoute exact path="/login" component={Login} />
+            <AuthRoute exact path="/register" component={Register} />
+            <AuthRoute exact path="/forgot" component={Forgot} />
+            <AuthRoute exact path="/restore/:hash" component={Restore} />
+          </BrowserRouter>
+        </FriendsProvider>
       </UserProvider>
     </AuthProvider>
   );

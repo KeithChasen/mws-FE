@@ -41,6 +41,11 @@ const LOGIN = gql`
           firstname
           lastname
           photo
+          friends {
+              requester
+              invitee
+              status
+          }
       }
   }
 `;
