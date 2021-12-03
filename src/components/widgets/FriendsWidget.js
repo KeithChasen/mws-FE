@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useFriendsState, useFriendsDispatch } from "../../context/friends";
 import { useMutation } from "@apollo/client";
 import { AddToFriendsButton } from "../../elements/friends";
 import Modal from "./Modal";
 import { SEND_FRIEND_REQUEST } from "../../graphql/friends";
 
+const PENDING = 'pending';
+const ACTIVE = 'active';
+
 const FriendsWidget = ({ loadedUser, user }) => {
   const [showModal, toggleModal] = useState(false);
   const [friendRequest, { loading }] = useMutation(SEND_FRIEND_REQUEST);
+
+  const { friends } = useFriendsState();
+
   const modalHeader = 'Add to Friends';
   const modalBody = `You're about to add ${loadedUser.firstname} ${loadedUser.lastname} to friends`;
-
   const confirmAction = () => {
     //send friends request to server
     friendRequest({ variables: { selectedUserId: loadedUser.id } })
@@ -28,26 +33,55 @@ const FriendsWidget = ({ loadedUser, user }) => {
     toggleModal(false);
   };
 
+  const manageFriendRequest = (friends, selectedUserId, authUserId) => {
+    if (!friends)
+      return [];
+
+     return friends.filter(
+      friend => (friend.invitee === authUserId && friend.requester === selectedUserId) ||
+        (friend.requester === authUserId && friend.invitee === selectedUserId)
+    )[0];
+  };
+
   const friendshipButton = () => {
     if (user.id === loadedUser.id)
       return null;
 
-    //if user.friendsList.find(loadedUser.id).status === 'pending - means they are already friends
-    // Pending
+    const friendRequest = manageFriendRequest(friends, loadedUser.id, user.id);
 
-    //if user.friendsList.find(loadedUser.id).status === 'active' - means they are already friends
-    // Remove
+    if (!friendRequest)
+      return (
+        <AddToFriendsButton
+          onClick={() => toggleModal(!showModal)}
+        >
+          Add to Friends
+        </AddToFriendsButton>
+      );
 
-    //if !user.friendsList.find(loadedUser.id) - means they can send request to add to friends
-    // Add
+    if (friendRequest.invitee === user.id && friendRequest.status === PENDING)
+      return (
+        <AddToFriendsButton
+          onClick={() => console.log('accepted!')}
+        >
+          Accept Request
+        </AddToFriendsButton>
+      );
 
-    return (
-      <AddToFriendsButton
-        onClick={() => toggleModal(!showModal)}
-      >
-        Add to Friends
-      </AddToFriendsButton>
-    )
+    if (friendRequest.requester === user.id && friendRequest.status === PENDING)
+      return (
+        <h1>
+          Request Sent
+        </h1>
+      );
+
+    if ((friendRequest.requester === user.id || friendRequest.invitee === user.id) && friendRequest.status === ACTIVE)
+      return (
+        <AddToFriendsButton
+          onClick={() => console.log('remove!')}
+        >
+          Remove Friend
+        </AddToFriendsButton>
+      );
   };
 
   return (

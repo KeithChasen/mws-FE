@@ -10,6 +10,7 @@ if (localStorage.getItem('token')) {
 
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('token');
+    //todo: refresh token and re-authenticate
   } else {
     initState.user = {
       ...decodedToken,

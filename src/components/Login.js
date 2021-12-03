@@ -47,14 +47,11 @@ const Login = props => {
     e.preventDefault();
     login({ variables: credentials })
       .then(res => {
-
-        console.log(res, 'login response')
-
         if (res.data.login.token) {
           context.login(res.data.login);
           dispatch({
             type: 'SET_FRIENDS',
-            payload: res.data.friends
+            payload: res.data.login.friends
           });
           history.push('/account');
         } else {
