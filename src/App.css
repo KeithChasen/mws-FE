@@ -73,6 +73,15 @@ nav .mobile-header {
     display: table-cell;
 }
 
+/* invisible panel aside of mobile menu by clicking on which you can close mobile menu */
+.mobile-header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
 .uploadAvatar {
     display: flex;
     flex-direction: column;

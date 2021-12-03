@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StyledLink from "../../elements/StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faWindowClose } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +17,9 @@ export const Mobile = ({user, logout}) => {
       </StyledLink>
       <StyledLink nav={+true} to="/users" activeStyle={activeStyle}>
         Users
+      </StyledLink>
+      <StyledLink nav={+true} to="/friends" activeStyle={activeStyle}>
+        Friends
       </StyledLink>
       <StyledLink nav={+true} to="/chat" onClick={() => window.location.href = '/chat'} activeStyle={activeStyle}>
         Chat
@@ -37,25 +40,12 @@ export const Mobile = ({user, logout}) => {
     setDisplayMenu(!displayMenu);
   };
 
-  const CloseUponClick = e => {
-    if (displayMenu) {
-      setDisplayMenu(!displayMenu);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      document.addEventListener('click', CloseUponClick, true);
-      return () => document.removeEventListener('click', CloseUponClick, true)
-    };
-  }, );
-
-
   return (
     <div className="mobile-header">
       <div id="mobile-logo">
         <span>MWSKC</span>
       </div>
+      <div className="mobile-header-background" style={{ display: displayMenu ? "block" : "none" }} onClick={() => setDisplayMenu(false)} />
       <div id="burgerLinks" style={{ display: displayMenu ? "block" : "none" }}>
         { authLinks }
       </div>
