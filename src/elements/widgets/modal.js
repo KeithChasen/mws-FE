@@ -19,14 +19,16 @@ const ModalWrapper = styled.div`
   border-radius: 0.5rem;
   top: 20%;
   left: 30%;
-`;
-
-const ModalInfoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: .7rem;
+  
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         width: 80vw;
+         min-height: 70vw;
+         top: 20%;
+         left: 10%;
+         font-size: 2rem;
+       }
 `;
 
 const modalSharedPartsStyles = css`
@@ -41,14 +43,29 @@ const modalSharedPartsStyles = css`
 
 const ModalHeader = styled.div`
   height: 5rem;
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         height: 10rem;
+       }
   ${modalSharedPartsStyles}
 `;
 const ModalBody = styled.div`
   height: 10rem;
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         height: 20rem;
+       }
   ${modalSharedPartsStyles}
 `;
 const ModalButtonsWrapper = styled.div`
   height: 3rem;
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         height: 6rem;
+       }
   ${modalSharedPartsStyles}
 `;
 
@@ -62,6 +79,14 @@ const ModalButton = styled.button`
   border: 0.2rem solid var(--app-grey);
   border-radius: 0.3rem;
   
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         font-size: 2rem;
+         min-width: 15rem;
+         min-height: 5rem;
+       }
+  
   &:hover {
     background: var(--app-grey);
   }
@@ -70,7 +95,6 @@ const ModalButton = styled.button`
 export {
   ModalBackground,
   ModalWrapper,
-  ModalInfoWrapper,
   ModalHeader,
   ModalBody,
   ModalButtonsWrapper,

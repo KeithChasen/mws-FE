@@ -30,6 +30,13 @@ const AddToFriendsButton = styled.button`
   width: 10rem;
   color: var(--app-black);
   font-weight: bold;
+  
+  @media only screen 
+       and (min-device-width: 280px)
+       and (max-device-width: 1024px) {
+         width: 70vw;
+         height: 5vh;
+       }
 `;
 
 export { FriendsWrapper, RequestsPanel, FriendsPanel, AddToFriendsButton };
