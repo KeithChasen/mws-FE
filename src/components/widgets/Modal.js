@@ -10,7 +10,8 @@ import {
 
 const Modal = ({
    showModal = false,
-   toggleModal,
+   confirmAction,
+   cancelAction,
    modalHeader = 'Confirm the Action',
    modalBody = '',
    confirmButtonLabel = 'Confirm',
@@ -18,7 +19,7 @@ const Modal = ({
 }) => {
   return showModal ? (
     <>
-      <ModalBackground onClick={() => toggleModal(false)} />
+      <ModalBackground onClick={() => cancelAction(false)} />
       <ModalWrapper>
           <ModalHeader>
             <h2>
@@ -27,10 +28,10 @@ const Modal = ({
           </ModalHeader>
           <ModalBody>{ modalBody }</ModalBody>
           <ModalButtonsWrapper>
-            <ModalButton onClick={() => toggleModal(false)}>
+            <ModalButton onClick={() => confirmAction(false)}>
               { confirmButtonLabel }
             </ModalButton>
-            <ModalButton onClick={() => toggleModal(false)}>
+            <ModalButton onClick={() => cancelAction(false)}>
               { cancelButtonLabel }
             </ModalButton>
           </ModalButtonsWrapper>
