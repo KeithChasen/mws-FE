@@ -9,16 +9,16 @@ export const Mobile = ({user, logout}) => {
 
   const authLinks = user ? (
     <>
-      <StyledLink nav={+true} to="/account" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/account" onClick={() => setDisplayMenu(false)} activeStyle={activeStyle}>
         Account
       </StyledLink>
-      <StyledLink nav={+true} to="/account" onClick={logout}>
+      <StyledLink nav={+true} to="/account" onClick={() => { setDisplayMenu(false); logout(); }}>
         Logout
       </StyledLink>
-      <StyledLink nav={+true} to="/users" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/users" onClick={() => setDisplayMenu(false)} activeStyle={activeStyle}>
         Users
       </StyledLink>
-      <StyledLink nav={+true} to="/friends" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/friends" onClick={() => setDisplayMenu(false)} activeStyle={activeStyle}>
         Friends
       </StyledLink>
       <StyledLink nav={+true} to="/chat" onClick={() => window.location.href = '/chat'} activeStyle={activeStyle}>
@@ -27,10 +27,10 @@ export const Mobile = ({user, logout}) => {
     </>
   ) : (
     <>
-      <StyledLink nav={+true} to="/login" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/login" onClick={() => setDisplayMenu(false)} activeStyle={activeStyle}>
         Login
       </StyledLink>
-      <StyledLink nav={+true} to="/register" activeStyle={activeStyle}>
+      <StyledLink nav={+true} to="/register" onClick={() => setDisplayMenu(false)} activeStyle={activeStyle}>
         Register
       </StyledLink>
     </>
