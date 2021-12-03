@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import { AddToFriendsButton } from "../../elements/friends";
-import Modal from "../widgets/Modal";
+import Modal from "./Modal";
 import { SEND_FRIEND_REQUEST } from "../../graphql/friends";
 
 const FriendsWidget = ({ loadedUser, user }) => {
