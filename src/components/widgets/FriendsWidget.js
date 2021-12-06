@@ -1,9 +1,11 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFriendsState, useFriendsDispatch } from "../../context/friends";
-import { useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { AddToFriendsButton } from "../../elements/friends";
 import Modal from "./Modal";
 import { SEND_FRIEND_REQUEST } from "../../graphql/friends";
+
+import { GET_FRIENDS } from '../../graphql/friends'
 
 const PENDING = 'pending';
 const ACTIVE = 'active';
@@ -11,8 +13,25 @@ const ACTIVE = 'active';
 const FriendsWidget = ({ loadedUser, user }) => {
   const [showModal, toggleModal] = useState(false);
   const [friendRequest, { loading }] = useMutation(SEND_FRIEND_REQUEST);
+  const [getFriends, { data }] = useLazyQuery(GET_FRIENDS);
+  const dispatch = useFriendsDispatch();
 
   const { friends } = useFriendsState();
+
+  useEffect(() => {
+    if (friends === null) {
+      getFriends()
+    }
+  },[friends, getFriends]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: 'SET_FRIENDS',
+        payload: data.getFriends
+      })
+    }
+  }, [data, dispatch]);
 
   const modalHeader = 'Add to Friends';
   const modalBody = `You're about to add ${loadedUser.firstname} ${loadedUser.lastname} to friends`;

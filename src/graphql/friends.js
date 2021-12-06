@@ -8,4 +8,12 @@ const SEND_FRIEND_REQUEST = gql`
     }
 `;
 
-export { SEND_FRIEND_REQUEST };
+const GET_FRIENDS = gql`
+    query getFriends {
+        getFriends {
+            requester invitee status
+        }
+    }
+`;
+
+export { SEND_FRIEND_REQUEST, GET_FRIENDS };
