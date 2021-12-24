@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from 'react';
+import { useLazyQuery } from "@apollo/client";
 import { GET_USERS } from '../../graphql/users'
 
 import { UserListWrapper, UserList, UserLink } from "../../elements/users/list";
@@ -9,25 +9,26 @@ import { filterUsersWithoutAccount } from "../../utils/helpers";
 const UsersList = () => {
   const dispatch = useUserDispatch();
   const { users } = useUserState();
-  const [error, setError] = useState(null);
 
-  //todo: make it using lazy query and put to custom hook along with one from friends page
-  const { loading } = useQuery(GET_USERS, {
-    onCompleted: data => dispatch({ type: 'SET_USERS', payload: data.getUsers }),
-    onError: error => {
-      console.log(error);
-      setError('Error occured')
-    }
+  //todo: put to custom hook along with one from friends page
+  const [getUsers, { data }] = useLazyQuery(GET_USERS, {
+    fetchPolicy: 'no-cache'
   });
 
+  useEffect(() => {
+    if (typeof users === 'undefined') {
+      getUsers()
+    }
+  },[users, getUsers]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'SET_USERS', payload: data.getUsers })
+    }
+  }, [data, dispatch]);
+
   const getContent = () => {
-    if (loading)
-      return (<div>Loading...</div>);
-
-    if (error)
-      return (<div>{error}</div>);
-
-    if(!users || !users.length)
+    if (!users || !users.length)
       return (<div>No users...</div>);
 
     else
