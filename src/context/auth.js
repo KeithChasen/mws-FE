@@ -29,10 +29,7 @@ const authReducer = (state, action) => {
         user: action.payload
       };
     case 'LOGOUT':
-      return {
-        ...state,
-        user: null
-      };
+      return {};
     case 'UPDATE_ACCOUNT':
       return {
         ...state,
@@ -70,7 +67,7 @@ const AuthProvider = props => {
   };
 
   return (
-    <AuthContext.Provider value={{ user: state.user, login, logout, updateAccount }} {...props} />
+    <AuthContext.Provider value={{ user: state?.user, login, logout, updateAccount }} {...props} />
   );
 };
 

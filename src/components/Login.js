@@ -5,16 +5,18 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from '../graphql/auth';
 import { AuthContext } from "../context/auth";
 
-import { useFriendsState, useFriendsDispatch } from "../context/friends";
+import { useFriendsDispatch } from "../context/friends";
 
 import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/Form";
 import StyledLink from "../elements/StyledLink";
+import { useUserDispatch } from "../context/user";
 
 const Login = props => {
   const context = useContext(AuthContext);
   const history = useHistory();
 
   const dispatch = useFriendsDispatch();
+  const usersDispatch = useUserDispatch();
 
   const [credentials, setCredentials] = useState({
     email: '',
@@ -53,6 +55,10 @@ const Login = props => {
             type: 'SET_FRIENDS',
             payload: res.data.login.friends
           });
+          usersDispatch({
+            type: 'SET_USERS',
+            payload: undefined
+          })
           history.push('/account');
         } else {
           setErrors({
