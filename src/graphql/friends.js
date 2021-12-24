@@ -11,7 +11,9 @@ const SEND_FRIEND_REQUEST = gql`
 const GET_FRIENDS = gql`
     query getFriends {
         getFriends {
-            requester invitee status
+            requester
+            invitee
+            status
         }
     }
 `;

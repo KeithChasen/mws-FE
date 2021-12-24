@@ -42,7 +42,7 @@ const LOGIN = gql`
           lastname
           photo
           friends {
-              requester
+              requester 
               invitee
               status
           }

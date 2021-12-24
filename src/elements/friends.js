@@ -12,12 +12,12 @@ const FriendsWrapper = styled.div`
 const RequestsPanel = styled.div`
   height: 20vh;
   margin-bottom: 1vh;
-  ${friendsPanelStyles}
+  ${ friendsPanelStyles }
 `;
 
 const FriendsPanel = styled.div`
   height: 70vh;
-  ${friendsPanelStyles}
+  ${ friendsPanelStyles }
 `;
 
 const AddToFriendsButton = styled.button`
@@ -39,4 +39,14 @@ const AddToFriendsButton = styled.button`
        }
 `;
 
-export { FriendsWrapper, RequestsPanel, FriendsPanel, AddToFriendsButton };
+const FriendRequestCard = styled.div`
+  border: 0.1rem solid var(--app-grey);
+  margin: 1rem;
+  width: 25%;
+`;
+
+const FriendCard = styled.div`
+
+`;
+
+export { FriendsWrapper, RequestsPanel, FriendsPanel, AddToFriendsButton, FriendCard, FriendRequestCard };

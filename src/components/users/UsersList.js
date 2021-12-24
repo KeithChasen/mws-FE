@@ -11,6 +11,7 @@ const UsersList = () => {
   const { users } = useUserState();
   const [error, setError] = useState(null);
 
+  //todo: make it using lazy query and put to custom hook along with one from friends page
   const { loading } = useQuery(GET_USERS, {
     onCompleted: data => dispatch({ type: 'SET_USERS', payload: data.getUsers }),
     onError: error => {
