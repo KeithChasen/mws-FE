@@ -13,6 +13,8 @@ const ACTIVE = 'active';
 const FriendsWidget = ({ loadedUser, user }) => {
   const [showModal, toggleModal] = useState(false);
   const [friendRequest, { loading }] = useMutation(SEND_FRIEND_REQUEST);
+
+  //todo: send it to the custom hook
   const [getFriends, { data }] = useLazyQuery(GET_FRIENDS);
   const dispatch = useFriendsDispatch();
 
