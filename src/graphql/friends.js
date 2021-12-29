@@ -14,6 +14,7 @@ const GET_FRIENDS = gql`
             requester
             invitee
             status
+            id
         }
     }
 `;

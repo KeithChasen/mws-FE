@@ -1,11 +1,26 @@
 import React from 'react';
-import { FriendRequestCard } from "../../elements/friends";
+import {
+    FriendCard,
+    FriendCardButton,
+    FriendCardElement,
+    FriendPhoto,
+    FriendsButtonsWrapper
+} from "../../elements/friends";
 
-const FriendRequestItem = () => {
+const FriendRequestItem = ({ friend }) => {
     return (
-        <FriendRequestCard>
-            Friend Request
-        </FriendRequestCard>
+        <FriendCard>
+            <FriendPhoto src={ friend?.photo } />
+            <FriendCardElement>
+                <span>
+                { `${friend?.firstname} ${friend?.lastname}` || friend?.nickname }
+                </span>
+            </FriendCardElement>
+            <FriendsButtonsWrapper>
+                <FriendCardButton bgcolor="green" top>Confirm</FriendCardButton>
+                <FriendCardButton bgcolor='red' bottom>Decline</FriendCardButton>
+            </FriendsButtonsWrapper>
+        </FriendCard>
     );
 }
 

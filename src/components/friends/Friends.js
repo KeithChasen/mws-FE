@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useContext, useEffect} from 'react';
 import { FriendsPanel, FriendsWrapper, RequestsPanel } from "../../elements/friends";
 
 import { GET_FRIENDS } from "../../graphql/friends";
@@ -8,19 +8,21 @@ import FriendItem from "./FriendItem";
 import FriendRequestItem from "./FriendRequestItem";
 import { GET_USERS } from "../../graphql/users";
 import { useUserDispatch, useUserState } from "../../context/user";
+import {AuthContext} from "../../context/auth";
 
 const Friends = () => {
+    const { user } = useContext(AuthContext);
     //todo: send it to the custom hook along with stuff from UsersList
     const userDispatch = useUserDispatch();
 
     const { users } = useUserState();
 
-    console.log(users, 'Users 1')
-
-    const [getUsers, { data: usersData }] = useLazyQuery(GET_USERS);
+    const [getUsers, { data: usersData }] = useLazyQuery(GET_USERS,{
+        fetchPolicy: 'no-cache'
+    });
 
     useEffect(() => {
-        if (users === null) {
+        if (typeof users === 'undefined') {
             getUsers()
         }
     },[users, getUsers]);
@@ -30,8 +32,6 @@ const Friends = () => {
             userDispatch({ type: 'SET_USERS', payload: usersData.getUsers })
         }
     }, [usersData, userDispatch]);
-
-    console.log(users, 'Users 2')
 
     //todo: send it to the custom hook
     const [getFriends, { data }] = useLazyQuery(GET_FRIENDS);
@@ -57,8 +57,6 @@ const Friends = () => {
     let friendsRequests = [];
     let friendsList = [];
 
-    console.log(friends)
-
     if (friends) {
         friends.forEach(friend => {
             if (friend.status === 'active') {
@@ -68,7 +66,7 @@ const Friends = () => {
                 ]
             }
 
-            if (friend.status === 'pending') {
+            if (friend.status === 'pending' && friend.invitee === user.id) {
                 friendsRequests = [
                     ...friendsRequests,
                     friend
@@ -86,17 +84,23 @@ const Friends = () => {
       <RequestsPanel>
 
         { friendsRequests.length ?
-            friendsRequests.map(friendRequest => (
-                <FriendRequestItem />
-            ))
+            friendsRequests.map(friendRequest => {
+                if (users) {
+                    const userId = friendRequest.requester;
+                    const [friend] = users.filter(user => user.id === userId);
+                    return ( <FriendRequestItem key={friendRequest.id} friend={friend} /> )
+                }
+
+                return null;
+            })
             : 'No requests so far' }
       </RequestsPanel>
       <h4>Friends</h4>
       <FriendsPanel>
         { friendsList.length ?
-            friendsList.map(friend => (
-            <FriendItem />
-        )) : 'No friends so far' }
+            friendsList.map(friend => {
+                return ( <FriendItem key={friend.id} friend /> )
+            }) : 'No friends so far' }
       </FriendsPanel>
     </FriendsWrapper>
   );
