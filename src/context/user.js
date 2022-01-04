@@ -8,7 +8,7 @@ const userReducer = (state, action) => {
     case 'SET_USERS':
       return {
         ...state,
-        users: action.payload
+        users: typeof action.payload === 'array' ? action.payload : action.payload.getUsers
       };
     case 'SET_SELECTED_USER':
       return {

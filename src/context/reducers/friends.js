@@ -3,7 +3,7 @@ export const friendsReducer = (state, action) => {
     case 'SET_FRIENDS':
       return {
         ...state,
-        friends: action.payload
+        friends: typeof action.payload === 'array' ? action.payload : action.payload.getFriends
       };
     default:
       return {
