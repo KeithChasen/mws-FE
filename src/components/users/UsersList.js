@@ -1,31 +1,14 @@
-import React, { useEffect } from 'react';
-import { useLazyQuery } from "@apollo/client";
+import React from 'react';
 import { GET_USERS } from '../../graphql/users'
-
 import { UserListWrapper, UserList, UserLink } from "../../elements/users/list";
 import { useUserDispatch, useUserState } from "../../context/user";
 import { filterUsersWithoutAccount } from "../../utils/helpers";
+import { useQueryOnDemand } from "../../utils/hooks/useQueryOnDemand";
 
 const UsersList = () => {
   const dispatch = useUserDispatch();
   const { users } = useUserState();
-
-  //todo: put to custom hook along with one from friends page
-  const [getUsers, { data }] = useLazyQuery(GET_USERS, {
-    fetchPolicy: 'no-cache'
-  });
-
-  useEffect(() => {
-    if (typeof users === 'undefined') {
-      getUsers()
-    }
-  },[users, getUsers]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch({ type: 'SET_USERS', payload: data.getUsers })
-    }
-  }, [data, dispatch]);
+  useQueryOnDemand(GET_USERS, users, dispatch, 'SET_USERS')
 
   const getContent = () => {
     if (!users || !users.length)
