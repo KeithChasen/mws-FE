@@ -5,6 +5,16 @@ export const friendsReducer = (state, action) => {
         ...state,
         friends: typeof action.payload === 'array' ? action.payload : action.payload.getFriends
       };
+    case 'UPDATE_FRIENDS':
+      return {
+        ...state,
+        friends: [...state.friends.filter(friend => friend.id !== action.payload.id), action.payload]
+      }
+    case 'DELETE_FRIEND':
+      return {
+        ...state,
+        friends: [...state.friends.filter(friend => friend.id !== action.payload.id)]
+      }
     default:
       return {
         ...state

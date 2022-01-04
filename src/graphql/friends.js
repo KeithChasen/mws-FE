@@ -19,4 +19,21 @@ const GET_FRIENDS = gql`
     }
 `;
 
-export { SEND_FRIEND_REQUEST, GET_FRIENDS };
+const CHANGE_FRIENDSHIP_STATUS = gql`
+  mutation changeFriendshipStatus(
+      $selectedUserId: ID!
+      $friendshipStatus: String!
+  ) {
+      changeFriendshipStatus(
+        selectedUserId: $selectedUserId
+        friendshipStatus: $friendshipStatus
+      ) {
+            requester
+            invitee
+            status
+            id
+      }
+  }
+`;
+
+export { SEND_FRIEND_REQUEST, GET_FRIENDS, CHANGE_FRIENDSHIP_STATUS };
