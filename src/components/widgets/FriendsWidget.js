@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFriendsState, useFriendsDispatch } from "../../context/friends";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { AddToFriendsButton } from "../../elements/friends";
 import Modal from "./Modal";
 import { SEND_FRIEND_REQUEST } from "../../graphql/friends";
-
 import { GET_FRIENDS } from '../../graphql/friends'
+import { useQueryOnDemand } from "../../utils/hooks/useQueryOnDemand";
 
 const PENDING = 'pending';
 const ACTIVE = 'active';
@@ -14,39 +14,23 @@ const FriendsWidget = ({ loadedUser, user }) => {
   const [showModal, toggleModal] = useState(false);
   const [friendRequest, { loading }] = useMutation(SEND_FRIEND_REQUEST);
 
-  //todo: send it to the custom hook
-  const [getFriends, { data }] = useLazyQuery(GET_FRIENDS);
   const dispatch = useFriendsDispatch();
-
   const { friends } = useFriendsState();
-
-  useEffect(() => {
-    if (friends === null) {
-      getFriends()
-    }
-  },[friends, getFriends]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch({
-        type: 'SET_FRIENDS',
-        payload: data.getFriends
-      })
-    }
-  }, [data, dispatch]);
+  useQueryOnDemand(GET_FRIENDS, friends, dispatch, 'SET_FRIENDS')
 
   const modalHeader = 'Add to Friends';
   const modalBody = `You're about to add ${loadedUser.firstname} ${loadedUser.lastname} to friends`;
   const confirmAction = () => {
-    //send friends request to server
     friendRequest({ variables: { selectedUserId: loadedUser.id } })
       .then(res => {
-        console.log(res, 'res')
+        dispatch({
+          type: 'UPDATE_FRIENDS',
+          payload: res.data.addToFriendsRequest
+        })
       })
       .catch(errors => {
         console.log('Errors', errors.graphQLErrors[0].extensions.errors)
       });
-
     toggleModal(false);
   };
 
