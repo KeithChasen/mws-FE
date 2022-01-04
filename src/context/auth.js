@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import jwtDecode from "jwt-decode";
+import { authReducer } from "./reducers/auth";
 
 const initState = {
   user: null
@@ -20,25 +21,6 @@ if (localStorage.getItem('token')) {
 }
 
 const AuthContext = createContext({});
-
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        ...state,
-        user: action.payload
-      };
-    case 'LOGOUT':
-      return {};
-    case 'UPDATE_ACCOUNT':
-      return {
-        ...state,
-        user: action.payload
-      };
-    default:
-      return state;
-  }
-};
 
 const AuthProvider = props => {
   const [state, dispatch] = useReducer(authReducer, initState);
