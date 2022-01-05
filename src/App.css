@@ -17,7 +17,7 @@ html {
     --app-black: #283747;
     --app-white: #f3f3f3;
     --app-grey: #dce1e3;
-    --app-green: #164a41;
+    --app-green: #50C878;
 
     --app-royalBlue: #4169E1;
 }
@@ -71,6 +71,15 @@ nav .mobile-header {
     height: 5vh;
     vertical-align: middle;
     display: table-cell;
+}
+
+/* invisible panel aside of mobile menu by clicking on which you can close mobile menu */
+.mobile-header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .uploadAvatar {

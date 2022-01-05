@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faPhotoVideo } from "@fortawesome/free-solid-svg-icons";
 import DefaultAvatar from "../../media/avatar-default.png";
 import { AuthContext } from "../../context/auth";
+import FriendsWidget from "../widgets/FriendsWidget";
 
 const ProfileDetails = ({ loadedUser, upload, panelSize, edit, mobileWidth }) => {
   const { user } = useContext(AuthContext);
@@ -55,6 +56,7 @@ const ProfileDetails = ({ loadedUser, upload, panelSize, edit, mobileWidth }) =>
           { changePhotoButton }
           { editButton }
         </div>
+        <FriendsWidget { ...{ loadedUser, user } } />
       </CardItem>
 
       { isVisibleAccountNote() }

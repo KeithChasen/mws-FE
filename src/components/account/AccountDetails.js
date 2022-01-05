@@ -1,26 +1,27 @@
 import React from 'react';
 import {  MenuButton, StyledPanel } from "../../elements/account/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faUserFriends, faUserEdit, faComments } from "@fortawesome/free-solid-svg-icons";
 import ProfileDetails from "../shared/ProfileDetails";
 
 const AccountDetails = ({ edit, user, upload }) => {
   const navigateToUsers = () => window.location.href = '/users';
   const navigateToChat = () => window.location.href = '/chat';
+  const navigateToFriends = () => window.location.href = '/friends';
 
   return (
     <>
       <StyledPanel bgcolor='grey' size={30}>
         <MenuButton onClick={navigateToUsers}>
-          <FontAwesomeIcon icon={faEdit}/>
+          <FontAwesomeIcon icon={faUserEdit}/>
           Users
         </MenuButton>
-        <MenuButton onClick={() => console.log()} disabled={true}>
-          <FontAwesomeIcon icon={faEdit}/>
-          Change Password (TBD)
+        <MenuButton onClick={navigateToFriends}>
+          <FontAwesomeIcon icon={faUserFriends}/>
+          Friends
         </MenuButton>
         <MenuButton onClick={navigateToChat}>
-          <FontAwesomeIcon icon={faEdit}/>
+          <FontAwesomeIcon icon={faComments}/>
           Chat
         </MenuButton>
       </StyledPanel>

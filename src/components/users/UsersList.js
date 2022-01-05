@@ -1,32 +1,17 @@
-import React, { useState } from 'react';
-import { useQuery } from "@apollo/client";
+import React from 'react';
 import { GET_USERS } from '../../graphql/users'
-
 import { UserListWrapper, UserList, UserLink } from "../../elements/users/list";
 import { useUserDispatch, useUserState } from "../../context/user";
 import { filterUsersWithoutAccount } from "../../utils/helpers";
+import { useQueryOnDemand } from "../../utils/hooks/useQueryOnDemand";
 
 const UsersList = () => {
   const dispatch = useUserDispatch();
   const { users } = useUserState();
-  const [error, setError] = useState(null);
-
-  const { loading } = useQuery(GET_USERS, {
-    onCompleted: data => dispatch({ type: 'SET_USERS', payload: data.getUsers }),
-    onError: error => {
-      console.log(error);
-      setError('Error occured')
-    }
-  });
+  useQueryOnDemand(GET_USERS, users, dispatch, 'SET_USERS')
 
   const getContent = () => {
-    if (loading)
-      return (<div>Loading...</div>);
-
-    if (error)
-      return (<div>{error}</div>);
-
-    if(!users || !users.length)
+    if (!users || !users.length)
       return (<div>No users...</div>);
 
     else

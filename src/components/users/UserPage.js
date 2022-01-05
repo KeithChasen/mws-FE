@@ -5,6 +5,7 @@ import { GET_USER } from '../../graphql/users'
 import ProfileDetails from "../shared/ProfileDetails";
 
 const UserPage = () => {
+  //replace with use params hook
   const url = window.location.href;
   const userId = url.substr(url.lastIndexOf('/') + 1);
   const { loading, error, data } = useQuery(GET_USER, { variables: { userId }});

@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import jwtDecode from "jwt-decode";
+import { authReducer } from "./reducers/auth";
 
 const initState = {
   user: null
@@ -10,6 +11,7 @@ if (localStorage.getItem('token')) {
 
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('token');
+    //todo: refresh token and re-authenticate
   } else {
     initState.user = {
       ...decodedToken,
@@ -19,28 +21,6 @@ if (localStorage.getItem('token')) {
 }
 
 const AuthContext = createContext({});
-
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        ...state,
-        user: action.payload
-      };
-    case 'LOGOUT':
-      return {
-        ...state,
-        user: null
-      };
-    case 'UPDATE_ACCOUNT':
-      return {
-        ...state,
-        user: action.payload
-      };
-    default:
-      return state;
-  }
-};
 
 const AuthProvider = props => {
   const [state, dispatch] = useReducer(authReducer, initState);
@@ -69,7 +49,7 @@ const AuthProvider = props => {
   };
 
   return (
-    <AuthContext.Provider value={{ user: state.user, login, logout, updateAccount }} {...props} />
+    <AuthContext.Provider value={{ user: state?.user, login, logout, updateAccount }} {...props} />
   );
 };
 
