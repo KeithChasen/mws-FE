@@ -8,6 +8,7 @@ export const Desktop = ({user, logout}) => {
       <StyledLink nav={+true} to="/account">Account</StyledLink>
       <StyledLink nav={+true} to="/users">Users</StyledLink>
       <StyledLink nav={+true} to="/friends">Friends</StyledLink>
+      <StyledLink nav={+true} to="/health">Health</StyledLink>
       <StyledLink nav={+true} to="/account" onClick={logout}>Logout</StyledLink>
     </>
   ) : (
