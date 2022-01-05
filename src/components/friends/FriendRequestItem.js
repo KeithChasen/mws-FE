@@ -9,13 +9,16 @@ import {
 import { useMutation } from "@apollo/client";
 import { CHANGE_FRIENDSHIP_STATUS } from "../../graphql/friends";
 import { useFriendsDispatch } from "../../context/friends";
+import DefaultAvatar from "../../media/avatar-default.png";
 
 const FriendRequestItem = ({ friend }) => {
     const dispatch = useFriendsDispatch();
 
     const [changeFriendshipStatus, { loading }] = useMutation(CHANGE_FRIENDSHIP_STATUS);
 
-    const handleFriendshipStatus = status => {
+    const handleFriendshipStatus = (e, status) => {
+        e.preventDefault();
+
         const changeStatusObject = {
             selectedUserId: friend.id,
             friendshipStatus: status || '' //empty status means cancel friend request and delete record from DB
@@ -39,18 +42,18 @@ const FriendRequestItem = ({ friend }) => {
     }
 
     return (
-        <FriendCard>
-            <FriendPhoto src={ friend?.photo } />
+        <FriendCard  key={friend.id} to={ `/user/${friend.id}` }>
+            <FriendPhoto src={ friend?.photo ?? DefaultAvatar } />
             <FriendCardElement>
                 <span>
                 { `${friend?.firstname} ${friend?.lastname}` || friend?.nickname }
                 </span>
             </FriendCardElement>
             <FriendsButtonsWrapper>
-                <FriendCardButton bgcolor="green" top onClick={() => handleFriendshipStatus('active')}>
+                <FriendCardButton bgcolor="green" top onClick={(e) => handleFriendshipStatus(e,'active')}>
                     Confirm
                 </FriendCardButton>
-                <FriendCardButton bgcolor='red' bottom onClick={() => handleFriendshipStatus('')}>
+                <FriendCardButton bgcolor='red' bottom onClick={(e) => handleFriendshipStatus(e, '')}>
                     Decline
                 </FriendCardButton>
             </FriendsButtonsWrapper>

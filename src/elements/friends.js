@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { friendsPanelStyles } from "./styledHelpers";
+import { NavLink } from "react-router-dom";
 
 const FriendsWrapper = styled.div`
     background: var(--app-grey);
@@ -39,7 +40,7 @@ const AddToFriendsButton = styled.button`
        }
 `;
 
-const FriendCard = styled.div`
+const FriendCard = styled(NavLink)`
   border: 0.1rem solid var(--app-grey);
   border-radius: 1rem;
   margin: 1rem;
@@ -50,6 +51,10 @@ const FriendCard = styled.div`
   font-weight: bold;
   letter-spacing: .1rem;
   font-size: 1.5rem;
+  
+  max-height: 15vh;
+  text-decoration: none;
+  color: var(--app-black);
 
   @media
     only screen and (min-device-width: 280px)

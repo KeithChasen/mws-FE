@@ -64,8 +64,19 @@ const Friends = () => {
       <h4>Friends</h4>
       <FriendsPanel>
         { friendsList.length ?
-            friendsList.map(friend => {
-                return ( <FriendItem key={friend.id} friend /> )
+            friendsList.map(friendItem => {
+                if (users) {
+                    let friend = null;
+                    const friendRequester = users.filter(user => user.id === friendItem.requester);
+                    const userRequester = users.filter(user => user.id === friendItem.invitee);
+                    if (friendRequester.length)
+                        [friend] = friendRequester;
+                    if (userRequester.length)
+                        [friend] = userRequester;
+                    return ( <FriendItem key={friendItem.id} friend={friend} /> )
+                }
+
+                return null;
             }) : 'No friends so far' }
       </FriendsPanel>
     </FriendsWrapper>
