@@ -29,7 +29,7 @@ const BloodPressure = () => {
 
         const variables = {
             time: `${hours}:${minutes} ${time}`,
-            date,
+            date: `${date.toLocaleString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}`,
             sys: bloodPressure.sys,
             dia: bloodPressure.dia,
             pulse: bloodPressure.pulse
