@@ -10,6 +10,7 @@ import { useFriendsDispatch } from "../context/friends";
 import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/Form";
 import StyledLink from "../elements/StyledLink";
 import { useUserDispatch } from "../context/user";
+import { useHealthDispatch } from "../context/health";
 
 const Login = props => {
   const context = useContext(AuthContext);
@@ -17,6 +18,8 @@ const Login = props => {
 
   const dispatch = useFriendsDispatch();
   const usersDispatch = useUserDispatch();
+
+  const healthDispatch = useHealthDispatch();
 
   const [credentials, setCredentials] = useState({
     email: '',
@@ -58,6 +61,10 @@ const Login = props => {
           usersDispatch({
             type: 'SET_USERS',
             payload: undefined
+          })
+          healthDispatch({
+              type: 'SET_HEALTH_DIARY',
+              payload: undefined
           })
           history.push('/account');
         } else {

@@ -48,7 +48,9 @@ const BloodPressure = () => {
         }
 
         saveBloodPressure({ variables })
-            .then(res => console.log(res, 'save blood pressure res'))
+            .then(res => {
+              console.log(res, 'save blood pressure response')
+            })
             .catch(err => console.log(err, 'save blood pressure error'))
     }
 

@@ -1,11 +1,8 @@
 const BloodPressureData = ({ health }) => {
-
     const bloodPressure = health.map(healthRecord => ({
         date: healthRecord.date,
         bloodPressure: healthRecord.activities.bloodPressure
     }));
-
-    console.log(bloodPressure, 'BP')
 
     return <>
         {
