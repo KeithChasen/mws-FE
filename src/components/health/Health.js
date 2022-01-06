@@ -14,9 +14,7 @@ const Health = () => {
     return (
         <div>
             <h1>Health</h1>
-            <div>Table</div>
             <div>
-                Form
                 <form>
                     <select name="activity" id="activity">
                         <option value="bloodPressure">Blood Pressure</option>

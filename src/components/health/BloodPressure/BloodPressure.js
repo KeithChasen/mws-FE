@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import "react-datepicker/dist/react-datepicker.css";
 import { SAVE_BLOOD_PRESSURE } from "../../../graphql/health";
 import BloodPressureForm from "./BloodPressureForm";
+import BloodPressureTable from "./BloodPressureTable";
 
 const BloodPressure = () => {
     const [saveBloodPressure, { loading }] = useMutation(SAVE_BLOOD_PRESSURE);
@@ -37,21 +38,28 @@ const BloodPressure = () => {
 
         saveBloodPressure({ variables })
             .then(res => console.log(res, 'save blood pressure res'))
-            .catch(err => console.log('save blood pressure error'))
+            .catch(err => console.log(err, 'save blood pressure error'))
     }
 
-    return <BloodPressureForm {...{
-        handleSubmit,
-        date,
-        setDate,
-        hours,
-        setHours,
-        minutes,
-        setMinutes,
-        setTime,
-        bloodPressure,
-        setBloodPressure
-    }} />
+    return (
+        <>
+            <BloodPressureTable />
+            <BloodPressureForm
+                {...{
+                    handleSubmit,
+                    date,
+                    setDate,
+                    hours,
+                    setHours,
+                    minutes,
+                    setMinutes,
+                    setTime,
+                    bloodPressure,
+                    setBloodPressure
+                }}
+            />
+        </>
+    )
 }
 
 export default BloodPressure;
