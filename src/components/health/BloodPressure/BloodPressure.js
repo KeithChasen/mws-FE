@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { SAVE_BLOOD_PRESSURE } from "../../../graphql/health";
 import BloodPressureForm from "./BloodPressureForm";
 import BloodPressureTable from "./BloodPressureTable";
+import { useHealthDispatch } from "../../../context/health";
 
 const BloodPressure = () => {
     const [saveBloodPressure, { loading }] = useMutation(SAVE_BLOOD_PRESSURE);
@@ -20,6 +21,8 @@ const BloodPressure = () => {
     const [hours, setHours] = useState('10')
     const [minutes, setMinutes] = useState('00')
     const [timePeriod, setTimePeriod] = useState('am')
+
+    const healthDispatch = useHealthDispatch();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -54,9 +57,17 @@ const BloodPressure = () => {
 
         saveBloodPressure({ variables })
             .then(res => {
-              console.log(res, 'save blood pressure response')
+                //todo: rebuild this tough way of updating store
+                healthDispatch({
+                    type: 'SET_HEALTH_DIARY',
+                    payload: res.data.saveBloodPressure
+                })
+
             })
-            .catch(err => setError(err.graphQLErrors[0].extensions.errors.bloodPressure))
+            .catch(err => {
+                if (err.graphQLErrors && err.graphQLErrors.length)
+                    setError(err.graphQLErrors[0].extensions.errors.bloodPressure);
+            })
     }
 
     return (
