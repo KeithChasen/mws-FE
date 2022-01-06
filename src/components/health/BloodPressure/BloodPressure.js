@@ -14,6 +14,8 @@ const BloodPressure = () => {
         pulse: ''
     })
 
+    const [error, setError] = useState(null);
+
     const [diaryDate, setDiaryDate] = useState(new Date())
     const [hours, setHours] = useState('10')
     const [minutes, setMinutes] = useState('00')
@@ -22,7 +24,10 @@ const BloodPressure = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
+        setError(null);
+
         if (!bloodPressure.sys || !bloodPressure.dia || !bloodPressure.pulse) {
+            setError('Sys, Dia and Pulse should by entered')
             //todo: make better validation
             return;
         }
@@ -51,7 +56,7 @@ const BloodPressure = () => {
             .then(res => {
               console.log(res, 'save blood pressure response')
             })
-            .catch(err => console.log(err, 'save blood pressure error'))
+            .catch(err => setError(err.graphQLErrors[0].extensions.errors.bloodPressure))
     }
 
     return (
@@ -68,7 +73,8 @@ const BloodPressure = () => {
                     setMinutes,
                     setTimePeriod,
                     bloodPressure,
-                    setBloodPressure
+                    setBloodPressure,
+                    error
                 }}
             />
         </>

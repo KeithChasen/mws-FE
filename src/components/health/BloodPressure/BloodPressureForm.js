@@ -11,9 +11,11 @@ const BloodPressureForm = ({
                                setMinutes,
                                setTimePeriod,
                                bloodPressure,
-                               setBloodPressure
+                               setBloodPressure,
+                               error
 }) => {
     return <form onSubmit={handleSubmit}>
+        <span style={{ color: "red"}}>{error}</span>
         <label htmlFor="date">Date:</label>
         <DatePicker id="date" selected={diaryDate} onChange={date => setDiaryDate(date)} />
         <label htmlFor="time">Time:</label>
