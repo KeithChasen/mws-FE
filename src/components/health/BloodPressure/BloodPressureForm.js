@@ -3,19 +3,19 @@ import React from "react";
 
 const BloodPressureForm = ({
                                handleSubmit,
-                               date,
-                               setDate,
+                               diaryDate,
+                               setDiaryDate,
                                hours,
                                setHours,
                                minutes,
                                setMinutes,
-                               setTime,
+                               setTimePeriod,
                                bloodPressure,
                                setBloodPressure
 }) => {
     return <form onSubmit={handleSubmit}>
         <label htmlFor="date">Date:</label>
-        <DatePicker id="date" selected={date} onChange={date => setDate(date)} />
+        <DatePicker id="date" selected={diaryDate} onChange={date => setDiaryDate(date)} />
         <label htmlFor="time">Time:</label>
 
         <select
@@ -58,7 +58,7 @@ const BloodPressureForm = ({
 
         <select
             name="time"
-            onChange={(e) => setTime(e.target.value)}
+            onChange={(e) => setTimePeriod(e.target.value)}
         >
             <option value="am">AM</option>
             <option value="pm">PM</option>

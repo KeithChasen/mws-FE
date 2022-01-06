@@ -11,9 +11,27 @@ const BloodPressureTable = () => {
     console.log(health, 'health');
 
     const processTable = () => {
+        if (!health || !health.length)
+            return ( <p>No data to display...</p> )
+
         return (
             <table>
-
+                {health.map(healthDate => {
+                    if (healthDate.activities?.bloodPressure?.length) {
+                        return (
+                            <tr>
+                                TR
+                                {
+                                    healthDate.activities.bloodPressure.map(bloodPressureRecord => {
+                                        return (
+                                            <td>Blood Pressure Record</td>
+                                        );
+                                    })
+                                }
+                            </tr>
+                        )
+                    }
+                })}
             </table>
         )
     }

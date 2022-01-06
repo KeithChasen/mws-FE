@@ -14,26 +14,37 @@ const BloodPressure = () => {
         pulse: ''
     })
 
-    const [date, setDate] = useState(new Date())
+    const [diaryDate, setDiaryDate] = useState(new Date())
     const [hours, setHours] = useState('10')
     const [minutes, setMinutes] = useState('00')
-    const [time, setTime] = useState('am')
+    const [timePeriod, setTimePeriod] = useState('am')
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('form submitted')
 
         if (!bloodPressure.sys || !bloodPressure.dia || !bloodPressure.pulse) {
             //todo: make better validation
             return;
         }
 
+        const { sys, dia, pulse } = bloodPressure;
+        const time = `${hours}:${minutes}`;
+        const date = `${diaryDate.toLocaleString(
+            'en-US', 
+            { 
+                day: '2-digit',
+                month: '2-digit', 
+                year: 'numeric' 
+            })
+        }`;
+
         const variables = {
-            time: `${hours}:${minutes} ${time}`,
-            date: `${date.toLocaleString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}`,
-            sys: bloodPressure.sys,
-            dia: bloodPressure.dia,
-            pulse: bloodPressure.pulse
+            time,
+            timePeriod,
+            date,
+            sys,
+            dia,
+            pulse
         }
 
         saveBloodPressure({ variables })
@@ -47,13 +58,13 @@ const BloodPressure = () => {
             <BloodPressureForm
                 {...{
                     handleSubmit,
-                    date,
-                    setDate,
+                    diaryDate,
+                    setDiaryDate,
                     hours,
                     setHours,
                     minutes,
                     setMinutes,
-                    setTime,
+                    setTimePeriod,
                     bloodPressure,
                     setBloodPressure
                 }}

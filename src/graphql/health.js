@@ -11,6 +11,7 @@ const GET_HEALTH_DIARY = gql`
                     dia
                     pulse
                     time
+                    timePeriod
                 }
             }
         }
@@ -24,6 +25,7 @@ const SAVE_BLOOD_PRESSURE = gql`
         $sys: String!
         $dia: String!
         $pulse: String!
+        $timePeriod: String!
     ) {
         saveBloodPressure(
             date: $date
@@ -31,6 +33,7 @@ const SAVE_BLOOD_PRESSURE = gql`
             sys: $sys
             dia: $dia
             pulse: $pulse
+            timePeriod: $timePeriod
         ) {
 #            id
             date
@@ -40,6 +43,7 @@ const SAVE_BLOOD_PRESSURE = gql`
                     dia
                     pulse
                     time
+                    timePeriod
                 }
             }
         }
