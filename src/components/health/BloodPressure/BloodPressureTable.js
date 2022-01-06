@@ -3,7 +3,6 @@ import { useHealthDispatch, useHealthState } from "../../../context/health";
 import { GET_HEALTH_DIARY } from "../../../graphql/health";
 
 const BloodPressureTable = () => {
-
     const dispatch = useHealthDispatch();
     const { health } = useHealthState();
     useQueryOnDemand(GET_HEALTH_DIARY, health, dispatch, 'SET_HEALTH_DIARY')
@@ -16,15 +15,18 @@ const BloodPressureTable = () => {
 
         return (
             <table>
-                {health.map(healthDate => {
+                {health.map((healthDate, index) => {
                     if (healthDate.activities?.bloodPressure?.length) {
+
+                        const background = index % 2 === 0 ? 'var(--app-grey)' : null;
+
                         return (
-                            <tr>
-                                TR
+                            <tr className="blood-pressure-row" style={{ background }}>
+                                    <td>{healthDate.date}</td>
                                 {
                                     healthDate.activities.bloodPressure.map(bloodPressureRecord => {
                                         return (
-                                            <td>Blood Pressure Record</td>
+                                            <td>BP: {bloodPressureRecord.sys} / {bloodPressureRecord.dia}</td>
                                         );
                                     })
                                 }
