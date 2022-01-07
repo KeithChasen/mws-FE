@@ -2,6 +2,7 @@ import { useQueryOnDemand } from "../../../utils/hooks/useQueryOnDemand";
 import { useHealthDispatch, useHealthState } from "../../../context/health";
 import { GET_HEALTH_DIARY } from "../../../graphql/health";
 import BloodPressureData from "./BloodPressureData";
+import { BloodPressureStyledTable } from "../../../elements/Health/BloodPressure/Table";
 
 const BloodPressureTable = () => {
     const dispatch = useHealthDispatch();
@@ -15,15 +16,15 @@ const BloodPressureTable = () => {
             return ( <p>No data to display...</p> )
 
         return (
-            <table style={{ width: "100vw" }}>
+            <BloodPressureStyledTable>
                 <BloodPressureData health={health} />
-            </table>
+            </BloodPressureStyledTable>
         )
     }
 
     return (
         <>
-            <h3>Blood Pressure</h3>
+            <h2>Blood Pressure</h2>
             { processTable() }
         </>
     );

@@ -24,6 +24,7 @@ const FormWrapper = styled.div`
       width: 80vw;
       height: 5vh;
       border-radius: .5rem;
+      margin-bottom: 1rem;
     }
   }
 `
