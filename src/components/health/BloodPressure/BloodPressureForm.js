@@ -1,5 +1,6 @@
 import DatePicker from "react-datepicker";
 import React from "react";
+import { FormWrapper } from "../../../elements/Health/BloodPressure/Form";
 
 const BloodPressureForm = ({
                                handleSubmit,
@@ -14,7 +15,7 @@ const BloodPressureForm = ({
                                setBloodPressure,
                                error
 }) => {
-    return <form onSubmit={handleSubmit}>
+    return <FormWrapper onSubmit={handleSubmit}>
         <span style={{ color: "red"}}>{error}</span>
         <label htmlFor="date">Date:</label>
         <DatePicker id="date" selected={diaryDate} onChange={date => setDiaryDate(date)} />
@@ -25,7 +26,6 @@ const BloodPressureForm = ({
             value={hours}
             onChange={(e) => setHours(e.target.value)}
         >
-
             <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>
@@ -92,7 +92,7 @@ const BloodPressureForm = ({
             value={bloodPressure.pulse}
             onChange={e => setBloodPressure({...bloodPressure, [e.target.name] : e.target.value })}/>
         <button>Save</button>
-    </form>
+    </FormWrapper>
 }
 
 export default BloodPressureForm;

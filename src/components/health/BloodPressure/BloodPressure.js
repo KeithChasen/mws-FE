@@ -5,6 +5,7 @@ import { SAVE_BLOOD_PRESSURE } from "../../../graphql/health";
 import BloodPressureForm from "./BloodPressureForm";
 import BloodPressureTable from "./BloodPressureTable";
 import { useHealthDispatch } from "../../../context/health";
+import {BloodPressureWrapper} from "../../../elements/Health/BloodPressure/common";
 
 const BloodPressure = () => {
     const [saveBloodPressure, { loading }] = useMutation(SAVE_BLOOD_PRESSURE);
@@ -71,7 +72,7 @@ const BloodPressure = () => {
     }
 
     return (
-        <>
+        <BloodPressureWrapper>
             <BloodPressureTable />
             <BloodPressureForm
                 {...{
@@ -88,7 +89,7 @@ const BloodPressure = () => {
                     error
                 }}
             />
-        </>
+        </BloodPressureWrapper>
     )
 }
 
