@@ -21,26 +21,31 @@ import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
 import Chat from "./components/chat/Chat";
 import Friends from "./components/friends/Friends";
+import Health from "./components/health/Health";
+import {HealthProvider} from "./context/health";
 
 function App() {
   return (
     <AuthProvider>
       <UserProvider>
         <FriendsProvider>
-          <BrowserRouter>
-            <Menu />
-            <UnAuthRoute exact path="/" component={Account} />
-            <UnAuthRoute exact path="/account" component={Account} />
-            <UnAuthRoute exact path="/users" component={UsersList} />
-            <UnAuthRoute exact path="/user/:id" component={User} />
-            <UnAuthRoute exact path="/chat" component={Chat} />
-            <UnAuthRoute exact path="/friends" component={Friends} />
+          <HealthProvider>
+            <BrowserRouter>
+              <Menu />
+              <UnAuthRoute exact path="/" component={Account} />
+              <UnAuthRoute exact path="/account" component={Account} />
+              <UnAuthRoute exact path="/users" component={UsersList} />
+              <UnAuthRoute exact path="/user/:id" component={User} />
+              <UnAuthRoute exact path="/chat" component={Chat} />
+              <UnAuthRoute exact path="/friends" component={Friends} />
+              <UnAuthRoute exact path="/health" component={Health} />
 
-            <AuthRoute exact path="/login" component={Login} />
-            <AuthRoute exact path="/register" component={Register} />
-            <AuthRoute exact path="/forgot" component={Forgot} />
-            <AuthRoute exact path="/restore/:hash" component={Restore} />
-          </BrowserRouter>
+              <AuthRoute exact path="/login" component={Login} />
+              <AuthRoute exact path="/register" component={Register} />
+              <AuthRoute exact path="/forgot" component={Forgot} />
+              <AuthRoute exact path="/restore/:hash" component={Restore} />
+            </BrowserRouter>
+          </HealthProvider>
         </FriendsProvider>
       </UserProvider>
     </AuthProvider>
