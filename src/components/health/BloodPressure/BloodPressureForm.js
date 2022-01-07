@@ -18,7 +18,7 @@ const BloodPressureForm = ({
     return <FormWrapper onSubmit={handleSubmit}>
         <span style={{ color: "red"}}>{error}</span>
         <label htmlFor="date">Date:</label>
-        <DatePicker style={{ width: "100%" }} id="date" selected={diaryDate} onChange={date => setDiaryDate(date)} />
+        <DatePicker id="date" selected={diaryDate} onChange={date => setDiaryDate(date)} />
         <label htmlFor="time">Time:</label>
 
         <select
@@ -91,7 +91,7 @@ const BloodPressureForm = ({
             placeholder='Pulse 60...'
             value={bloodPressure.pulse}
             onChange={e => setBloodPressure({...bloodPressure, [e.target.name] : e.target.value })}/>
-        <button>Save</button>
+        <button className='bpButton'>Save</button>
     </FormWrapper>
 }
 

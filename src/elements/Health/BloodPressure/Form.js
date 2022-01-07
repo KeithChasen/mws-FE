@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 const FormWrapper = styled.form`
+
+  @media only screen
+  and (min-device-width: 280px)
+  and (max-device-width: 1024px) {
+    width: 90%;
+  }
+  
   width: 40vw;
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +23,7 @@ const FormWrapper = styled.form`
   
   label, button {
     margin-top: .3rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   
   input, select {
@@ -26,7 +33,7 @@ const FormWrapper = styled.form`
     border: .1rem solid black;
   }
   
-  button {
+  button.bpButton {
     height: 5vh;
     width: 100%;
     background: var(--app-green);

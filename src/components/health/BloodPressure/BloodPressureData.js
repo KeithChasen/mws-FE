@@ -26,21 +26,21 @@ const BloodPressureData = ({ health }) => {
                     const background = index % 2 === 0 ? 'var(--app-grey)' : null;
 
                     return (
-                        <tr className="bloodPressureRow" style={{ background }}>
-                            <td className="bpDate">{bloodPressureItem.date}</td>
-                            <td>
-                                <table className='bpDateTable'>
-                                    <tr className='bpDateTableRow'>
-                                        <th>Morning</th>
-                                        { processRowByTimePeriod(morningBloodPressure) }
-                                    </tr>
-                                    <tr>
-                                        <th>Evening</th>
-                                        { processRowByTimePeriod(eveningBloodPressure) }
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                        <div className="bloodPressureRow" style={{ background }}>
+                            <div className="bpDate">{bloodPressureItem.date}</div> {/* 10% */}
+
+                             <div className='bpDateTable'> {/* 90% */}
+                                 <div className="timePartLabels">
+                                     <div>Morning</div>
+                                     <div>Evening</div>
+                                 </div>
+
+                                <div className='bpDateTableRow'>
+                                    { processRowByTimePeriod(morningBloodPressure) }
+                                    { processRowByTimePeriod(eveningBloodPressure) }
+                                </div>
+                             </div>
+                        </div>
                     )
                 }
             })
@@ -50,9 +50,12 @@ const BloodPressureData = ({ health }) => {
 
 const processRowByTimePeriod = (timePeriodBloodPressure) => {
     return timePeriodBloodPressure.map(bp => (
-        <td className="bpRowByTimePeriod">
-            {`${bp.time ? bp.time : ''} ${bp.timePeriod ? bp.timePeriod : ''} BP: ${bp.sys ? bp.sys : ''}/${bp.dia ? bp.dia : ''} Pulse: ${bp.pulse ? bp.pulse : ''}`}
-        </td>
+        <div className="bpRowByTimePeriod">
+            {`${bp.time ? bp.time : ''} 
+            ${bp.timePeriod ? bp.timePeriod : ''} 
+            BP: ${bp.sys ? bp.sys : ''}/${bp.dia ? bp.dia : ''} 
+            Pulse: ${bp.pulse ? bp.pulse : ''}`}
+        </div>
     ))
 }
 

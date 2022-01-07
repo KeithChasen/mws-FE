@@ -1,32 +1,36 @@
 import styled from "styled-components";
 
-const BloodPressureStyledTable = styled.table`
-  width: 100vw;
-  
+const BloodPressureStyledTable = styled.div`
+  width: 90%;;
+  overflow-y: scroll;
+  max-height: 50%;
+
   .bloodPressureRow {
-    width: 10vw;
-    height: 5rem;
+    width: 100%;
+    min-height: 20%;
     font-size: 1rem;
+    display: grid;
+    grid-template-columns: 10% 90%;
   }
 
   .bpDate {
-    width: 10vw
+    height: 100%;
   }
-  
+
   .bpDateTable {
-    width: 100%
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 90%;
   }
   
-  th {
-    width: 5%
+  .timePartLabels {
+    display: grid;
   }
-  
-  tr.bpDateTableRow {
-    height: 2rem;
-  }
-  
-  td.bpRowByTimePeriod {
-    width: 20%;
+
+  .bpDateTableRow {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 

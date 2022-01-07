@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { backgroundLinearGradient } from "../styledHelpers";
 
 const HealthWrapper = styled.div`
@@ -6,6 +6,16 @@ const HealthWrapper = styled.div`
   width: 100vw;
   ${backgroundLinearGradient('to bottom left', 'grey', 'white')};
 `
+
+const HealthHeaderWrapper = styled.div`
+  height: 10%;
+  width: 100%;
+`;
+
+const ActivityWrapper = styled.div`
+  height: 90%;
+  width: 100%;
+`;
 
 const FormWrapper = styled.div`
   width: 100vw;
@@ -24,9 +34,8 @@ const FormWrapper = styled.div`
       width: 80vw;
       height: 5vh;
       border-radius: .5rem;
-      margin-bottom: 1rem;
     }
   }
 `
 
-export { HealthWrapper, FormWrapper }
+export { HealthWrapper, HealthHeaderWrapper, ActivityWrapper, FormWrapper }

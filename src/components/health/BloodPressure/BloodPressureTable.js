@@ -9,8 +9,6 @@ const BloodPressureTable = () => {
     const { health } = useHealthState();
     useQueryOnDemand(GET_HEALTH_DIARY, health, dispatch, 'SET_HEALTH_DIARY')
 
-    console.log(health, 'health');
-
     const processTable = () => {
         if (!health || !health.length)
             return ( <p>No data to display...</p> )
@@ -24,7 +22,6 @@ const BloodPressureTable = () => {
 
     return (
         <>
-            <h2>Blood Pressure</h2>
             { processTable() }
         </>
     );
