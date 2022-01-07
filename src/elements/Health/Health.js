@@ -22,12 +22,19 @@ const FormWrapper = styled.div`
   
   form {
     width: 100%;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     
     label {
       font-weight: bold;
+      font-size: 1rem;
+
+      @media only screen
+      and (min-device-width: 280px)
+      and (max-device-width: 1024px) {
+        font-size: 2rem;
+      }
     }
     
     select {

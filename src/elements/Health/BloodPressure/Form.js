@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const FormWrapper = styled.form`
-
   @media only screen
   and (min-device-width: 280px)
   and (max-device-width: 1024px) {
@@ -14,6 +13,13 @@ const FormWrapper = styled.form`
   
   label, input {
     width: 100%;
+    font-size: 1rem;
+
+    @media only screen
+    and (min-device-width: 280px)
+    and (max-device-width: 1024px) {
+      font-size: 2rem;
+    }
   }
   
   select {
@@ -24,6 +30,12 @@ const FormWrapper = styled.form`
   label, button {
     margin-top: .3rem;
     font-size: 1rem;
+
+    @media only screen
+    and (min-device-width: 280px)
+    and (max-device-width: 1024px) {
+      font-size: 3rem;
+    }
   }
   
   input, select {
@@ -41,6 +53,12 @@ const FormWrapper = styled.form`
     border-radius: .5rem;
     font-size: 1.5rem;
     color: var(--app-white);
+
+    @media only screen
+        and (min-device-width: 280px)
+        and (max-device-width: 1024px) {
+          font-size: 3rem;
+        }
     
     :hover {
       opacity: .7;
