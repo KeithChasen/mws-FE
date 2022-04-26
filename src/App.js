@@ -21,15 +21,15 @@ import UsersList from "./components/users/UsersList";
 import User from "./components/users/UserPage";
 import Chat from "./components/chat/Chat";
 import Friends from "./components/friends/Friends";
-import Health from "./components/health/Health";
-import {HealthProvider} from "./context/health";
+import Sport from "./components/sports";
+import {SportsProvider} from "./context/sport";
 
 function App() {
   return (
     <AuthProvider>
       <UserProvider>
         <FriendsProvider>
-          <HealthProvider>
+          <SportsProvider>
             <BrowserRouter>
               <Menu />
               <UnAuthRoute exact path="/" component={Account} />
@@ -38,14 +38,14 @@ function App() {
               <UnAuthRoute exact path="/user/:id" component={User} />
               <UnAuthRoute exact path="/chat" component={Chat} />
               <UnAuthRoute exact path="/friends" component={Friends} />
-              <UnAuthRoute exact path="/health" component={Health} />
+              <UnAuthRoute exact path="/sport" component={Sport} />
 
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/register" component={Register} />
               <AuthRoute exact path="/forgot" component={Forgot} />
               <AuthRoute exact path="/restore/:hash" component={Restore} />
             </BrowserRouter>
-          </HealthProvider>
+          </SportsProvider>
         </FriendsProvider>
       </UserProvider>
     </AuthProvider>
