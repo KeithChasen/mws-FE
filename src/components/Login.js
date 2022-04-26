@@ -10,7 +10,6 @@ import { useFriendsDispatch } from "../context/friends";
 import { StyledFormWrapper, StyledForm, StyledInput, StyledButton, StyledError, StyledMessage } from "../elements/Form";
 import StyledLink from "../elements/StyledLink";
 import { useUserDispatch } from "../context/user";
-import { useHealthDispatch } from "../context/health";
 
 const Login = props => {
   const context = useContext(AuthContext);
@@ -18,9 +17,6 @@ const Login = props => {
 
   const dispatch = useFriendsDispatch();
   const usersDispatch = useUserDispatch();
-
-  const healthDispatch = useHealthDispatch();
-
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -62,10 +58,6 @@ const Login = props => {
             type: 'SET_USERS',
             payload: undefined
           })
-          healthDispatch({
-              type: 'SET_HEALTH_DIARY',
-              payload: undefined
-          })
           history.push('/account');
         } else {
           setErrors({
@@ -75,9 +67,16 @@ const Login = props => {
         }
       })
       .catch(errors => {
-        setErrors({
-          ...errors.graphQLErrors[0].extensions.errors
-        })
+          if (errors.graphQLErrors[0]) {
+              setErrors({
+                  ...errors.graphQLErrors[0].extensions.errors
+              })
+          } else {
+              setErrors({
+                  ...errors,
+                  common: 'Something went wrong'
+              })
+          }
       })
   };
 
